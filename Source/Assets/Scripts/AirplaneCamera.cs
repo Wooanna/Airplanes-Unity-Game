@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera : MonoBehaviour
+public class AirplaneCamera : MonoBehaviour
 {
     public Airplane airplane;
 
