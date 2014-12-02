@@ -4,10 +4,9 @@ using System.Collections;
 public class Airplane : MonoBehaviour
 {
 
-    public int topSpeed;
+    public float topSpeed;
     public float currentSpeed;
     public int speedStep;
-    public int speedModifier;
     public Transform airplane;
     public int upperBound;
     public int downBound;
@@ -18,12 +17,11 @@ public class Airplane : MonoBehaviour
 
     void Awake()
     {
-        topSpeed = 10;
-        currentSpeed = 0;
+        topSpeed = 10f;
+        currentSpeed = 0f;
         speedStep = 15;
         upperBound = 6;
         downBound = -4;
-        speedModifier = 0;
         airplane = gameObject.transform;
         stats = (AirplaneStats)GetComponent("AirplaneStats");
     }
@@ -67,7 +65,6 @@ public class Airplane : MonoBehaviour
 
         if (!decreaseSpeed && Input.GetKey(KeyCode.LeftArrow))
         {
-            speedModifier = -2;
             currentSpeed += Time.deltaTime * speedStep;
             if (currentSpeed > topSpeed)
             {
@@ -77,7 +74,6 @@ public class Airplane : MonoBehaviour
         }
         else if (!decreaseSpeed && Input.GetKey(KeyCode.RightArrow))
         {
-            speedModifier = 10;
             currentSpeed += Time.deltaTime * speedStep;
             if (currentSpeed > topSpeed)
             {
@@ -105,11 +101,7 @@ public class Airplane : MonoBehaviour
             currentDirection = Vector3.back;
             airplane.Translate(Vector3.right * (Time.deltaTime * currentSpeed), Space.World);
         }
-        else
-        {
-            speedModifier = 0;
-        }
-
+       
         if (decreaseSpeed)
         {
             currentSpeed -= Time.deltaTime * (speedStep );
@@ -137,13 +129,15 @@ public class Airplane : MonoBehaviour
 
             }
             else if (currentDirection == Vector3.left ||
-                     currentDirection == Vector3.right ||
-                     currentDirection == Vector3.forward ||
-                     currentDirection == Vector3.back)
+                     currentDirection == Vector3.right)
             {
                 airplane.rotation = Quaternion.AngleAxis((currentSpeed / 4 / (float)topSpeed) * maxAngle, currentDirection);
             }
-
+            else if (currentDirection == Vector3.forward ||
+                     currentDirection == Vector3.back)
+            {
+                airplane.rotation = Quaternion.AngleAxis((currentSpeed / 2 / (float)topSpeed) * maxAngle, currentDirection);
+            }
 
         }
 
@@ -162,8 +156,8 @@ public class Airplane : MonoBehaviour
         }
     }
 
-    public int GetAirplaneSpeed()
+    public float GetAirplaneSpeed()
     {
-        return topSpeed + speedModifier;
+        return topSpeed + currentSpeed;
     }
 }
