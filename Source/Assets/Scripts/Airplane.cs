@@ -3,185 +3,194 @@ using System.Collections;
 
 public class Airplane : MonoBehaviour
 {
+    private const int DirectionLeft = 1;
+    private const int DirectionUp = 1 << 1;
+    private const int DirectionRight = 1 << 2;
+    private const int DirectionDown = 1 << 3;
 
-    public float topSpeed;
-    public float currentSpeed;
-    public int speedStep;
-    public Transform airplane;
-    public int upperBound;
-    public int downBound;
+    private const int ConstantSpeed = 5;
+    private const int SpeedModifierChangeStep = 25;
+    private const int MinSpeedModifier = -2;
+    private const int MaxSpeedModifier = 5;
+    private const int MaxModifiedHorizontalAngle = 5;
+    private const int MaxHorizontalAngle = 15;
+
+    private const int MaxSpeed = 5;
+    private const int SpeedChangeStep = 25;
+    private float currentSpeed;
+    private bool decreaseSpeed;
+
+    private int upperBorder = 6;
+    private int lowerBorder = -6;
+
+    private int currentHorizontalAngle;
+
+    private int direction;
     public AirplaneStats stats;
-    public int currentAngle;
-    public int maxAngle = 25;
-    private int rotationAngle = 90;
-    GameObject bullet;
-    bool decreaseSpeed = false;
-    Vector3 currentDirection;
-    private float airplaneAngle;
+
+    private float speedModifier;
+
+    private Transform airplane;
+    private Transform mainCamera;
 
     void Awake()
     {
-        topSpeed = 10f;
-        currentSpeed = 0f;
-        speedStep = 15;
-        upperBound = 6;
-        downBound = -4;
         airplane = gameObject.transform;
-        stats = (AirplaneStats)GetComponent("AirplaneStats");
+        mainCamera = Camera.main.transform;
     }
 
-   
+    private Vector3 forewardMovement;
     void Update()
     {
-        airplane.Translate(Vector3.forward * (Time.deltaTime * (GetAirplaneSpeed())), Space.World);
+        // Reset rotation
+        this.currentHorizontalAngle = 0;
+        airplane.rotation = Quaternion.AngleAxis(0, Vector3.right);
 
-        if (Input.GetKeyUp(KeyCode.UpArrow) ||
-            Input.GetKeyUp(KeyCode.LeftArrow) ||
-            Input.GetKeyUp(KeyCode.DownArrow) ||
-            Input.GetKeyUp(KeyCode.RightArrow) ||
-            Input.GetKeyUp(KeyCode.Z) ||
-            Input.GetKeyUp(KeyCode.X))
+        forewardMovement = Vector3.forward * (Time.deltaTime * (ConstantSpeed + this.speedModifier));
+
+        airplane.Translate(forewardMovement, Space.World);
+        mainCamera.Translate(forewardMovement, Space.World);
+
+        // TODO: Add the side movement at a later stage.
+        HandleInput();
+        HandleDirectionalMovement();
+        UpdateHorizontalAngle();
+
+        // Apply updated rotation
+        airplane.Rotate(Vector3.right, currentHorizontalAngle);
+
+        // TODO: Apply side rotation.
+    }
+
+    private void UpdateHorizontalAngle()
+    {
+        if (currentSpeed > 0)
         {
-            decreaseSpeed = true;
-        }
-        else if (!decreaseSpeed && Input.GetKey(KeyCode.UpArrow) && airplane.position.y < upperBound)
-        {
-            currentSpeed += Time.deltaTime * speedStep;
-            if (currentSpeed > topSpeed)
+            if ((direction & DirectionUp) > 0)
             {
-                currentSpeed = topSpeed;
+                currentHorizontalAngle -= (int)((currentSpeed / MaxSpeed) * MaxHorizontalAngle);
+            }
+            else if ((direction & DirectionDown) > 0)
+            {
+                currentHorizontalAngle += (int)((currentSpeed / MaxSpeed) * MaxHorizontalAngle);
             }
 
-            currentDirection = Vector3.up;
         }
 
-        else if (!decreaseSpeed && Input.GetKey(KeyCode.DownArrow) && airplane.position.y > downBound)
+        if (this.speedModifier > 0)
         {
-            currentSpeed += Time.deltaTime * speedStep;
-            if (currentSpeed > topSpeed)
+            currentHorizontalAngle += (int)((speedModifier / MaxSpeedModifier) * MaxModifiedHorizontalAngle);
+        }
+        else if (this.speedModifier < 0)
+        {
+            currentHorizontalAngle += (int)((speedModifier / -MinSpeedModifier) * MaxModifiedHorizontalAngle);
+        }
+    }
+
+    private void HandleDirectionalMovement()
+    {
+        if (this.direction > 0)
+        {
+            if ((this.direction & DirectionUp) > 0)
             {
-                currentSpeed = topSpeed;
+                this.airplane.Translate(Vector3.up * (currentSpeed * Time.deltaTime), Space.World);
             }
-            currentDirection = Vector3.down;
+            else if ((this.direction & DirectionDown) > 0)
+            {
+                this.airplane.Translate(Vector3.down * (currentSpeed * Time.deltaTime), Space.World);
+            }
+        }
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            speedModifier += SpeedModifierChangeStep * Time.deltaTime;
+            if (speedModifier > MaxSpeedModifier)
+            {
+                speedModifier = MaxSpeedModifier;
+            }
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            speedModifier -= SpeedModifierChangeStep * Time.deltaTime;
+            if (speedModifier < MinSpeedModifier)
+            {
+                speedModifier = MinSpeedModifier;
+            }
+        }
+        else
+        {
+            if (speedModifier < 0)
+            {
+                speedModifier += SpeedModifierChangeStep * Time.deltaTime;
+                if (speedModifier > 0)
+                {
+                    speedModifier = 0;
+                }
+            }
+            else if (speedModifier > 0)
+            {
+                speedModifier -= SpeedModifierChangeStep * Time.deltaTime;
+                if (speedModifier < 0)
+                {
+                    speedModifier = 0;
+                }
+            }
         }
 
-        if (!decreaseSpeed && Input.GetKey(KeyCode.Z))
+        if (this.decreaseSpeed)
         {
-            currentSpeed += Time.deltaTime * speedStep;
-            if (currentSpeed > topSpeed)
-            {
-                currentSpeed = topSpeed;
-            }
-            currentDirection = Vector3.left;
-        }
-        else if (!decreaseSpeed && Input.GetKey(KeyCode.X))
-        {
-            currentSpeed += Time.deltaTime * speedStep;
-            if (currentSpeed > topSpeed)
-            {
-                currentSpeed = topSpeed;
-            }
-            currentDirection = Vector3.right;
-        }
-        else if (!decreaseSpeed && Input.GetKey(KeyCode.LeftArrow))
-        {
-            currentSpeed += Time.deltaTime * speedStep;
-            if (currentSpeed > topSpeed)
-            {
-                currentSpeed = topSpeed;
-            }
-            currentDirection = Vector3.forward;
-            airplane.Translate(Vector3.left * (Time.deltaTime * currentSpeed), Space.World);
-        }
-        else if (!decreaseSpeed && Input.GetKey(KeyCode.RightArrow))
-        {
-            currentSpeed += Time.deltaTime * speedStep;
-            if (currentSpeed > topSpeed)
-            {
-                currentSpeed = topSpeed;
-            }
-            currentDirection = Vector3.back;
-            airplane.Translate(Vector3.right * (Time.deltaTime * currentSpeed), Space.World);
-        }
-              
-        if (decreaseSpeed)
-        {
-            currentSpeed -= Time.deltaTime * (speedStep );
-
+            currentSpeed -= SpeedChangeStep * Time.deltaTime;
             if (currentSpeed <= 0)
             {
                 currentSpeed = 0;
-                decreaseSpeed = false;
-                currentDirection = Vector3.zero;
+                this.decreaseSpeed = false;
             }
         }
-
-        if (currentDirection != Vector3.zero)
+        else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
         {
-            if (currentDirection == Vector3.up)
-            {
-                airplaneAngle =(currentSpeed / 2 / (float)topSpeed) * maxAngle;
-                airplane.rotation = Quaternion.AngleAxis(airplaneAngle, Vector3.left);
-                airplane.Translate(currentDirection * (Time.deltaTime * currentSpeed), Space.World);
-
-            }
-            else if (currentDirection == Vector3.down)
-            {
-                airplaneAngle = (currentSpeed / 2 / (float)topSpeed) * maxAngle;
-                airplane.rotation = Quaternion.AngleAxis(airplaneAngle, Vector3.right);
-                airplane.Translate(currentDirection * (Time.deltaTime * currentSpeed), Space.World);
-
-            }
-            else if (currentDirection == Vector3.left || currentDirection == Vector3.right)
-            {
-                airplaneAngle = (currentSpeed / 4 / (float)topSpeed) * maxAngle;
-                airplane.rotation = Quaternion.AngleAxis(airplaneAngle, currentDirection);
-                
-            }
-            else if (currentDirection == Vector3.forward)
-            {
-                airplane.rotation = Quaternion.AngleAxis((currentSpeed / 2 / (float)topSpeed) * maxAngle, currentDirection);
-                airplane.rotation = Quaternion.AngleAxis((currentSpeed / 4 / (float)topSpeed) * rotationAngle, Vector3.down);
-                airplane.Translate(currentDirection * (Time.deltaTime * currentSpeed), Space.World);
-
-            }
-            else if (currentDirection == Vector3.back)
-            {
-             airplane.rotation = Quaternion.AngleAxis((currentSpeed / 2 / (float)topSpeed) * maxAngle, currentDirection);
-                airplane.rotation = Quaternion.AngleAxis((currentSpeed / 4 / (float)topSpeed) * rotationAngle, Vector3.up);
-                airplane.Translate(currentDirection * (Time.deltaTime * currentSpeed), Space.World);
-            }
-
+            this.decreaseSpeed = true;
         }
-
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Obstacle")
+        else
         {
-            //game over
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                if (airplane.position.y > upperBorder)
+                {
+                    decreaseSpeed = true;
+                }
+                else
+                {
+                    currentSpeed += SpeedChangeStep * Time.deltaTime;
+                    if (currentSpeed > MaxSpeed)
+                    {
+                        currentSpeed = MaxSpeed;
+                    }
+
+                    this.direction &= ~DirectionDown;
+                    this.direction |= DirectionUp;
+                }
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                if (airplane.position.y < lowerBorder)
+                {
+                    decreaseSpeed = true;
+                }
+                else
+                {
+                    currentSpeed += SpeedChangeStep * Time.deltaTime;
+                    if (currentSpeed > MaxSpeed)
+                    {
+                        currentSpeed = MaxSpeed;
+                    }
+
+                    this.direction &= ~DirectionUp;
+                    this.direction |= DirectionDown;
+                }
+            }
         }
-        else if (other.tag == "Enemy")
-        {
-            stats.AdjustHealth(((CollisionDamage)other.GetComponent("CollisionDamage")).GetDamage() * -1);
-            Destroy(other.gameObject);
-        }
-    }
-
-    public float GetAirplaneSpeed()
-    {
-        return topSpeed + currentSpeed;
-    }
-
-    public float GetAirplaneAngle()
-    {
-        return airplaneAngle;
-
-    }
-
-    internal Vector3 GetCurrentDirection()
-    {
-        return currentDirection;
     }
 }
