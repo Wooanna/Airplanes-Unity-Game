@@ -5,15 +5,11 @@ public class Bullet : MonoBehaviour
 {
     private const int Speed = 40;
     private const int MaxDistance = 50;
-    public int Damage { get; set; }
+
+    public int damage = 15;
 
     private float totalDistance;
     private float currentDistance;
-
-    public Bullet()
-    {
-        Damage = 35;
-    }
 
     void Update()
     {
@@ -43,7 +39,7 @@ public class Bullet : MonoBehaviour
     private void HandleCollision(ElementStats stats)
     {
         Debug.Log("Bullet damaged!");
-        stats.InflictDamage(this.Damage);
+        stats.InflictDamage(this.damage);
         Destroy(gameObject); // TODO: add a small explosion for the bullet dissapearance.
     }
 }

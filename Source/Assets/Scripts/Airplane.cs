@@ -1,58 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Airplane : MonoBehaviour
+public class Airplane : BaseAirplaneMechanics
 {
-    private const int DirectionLeft = 1;
-    private const int DirectionUp = 1 << 1;
-    private const int DirectionRight = 1 << 2;
-    private const int DirectionDown = 1 << 3;
-
-    private const int ConstantSpeed = 5;
-    private const int SpeedModifierChangeStep = 25;
-    private const int MinSpeedModifier = -2;
-    private const int MaxSpeedModifier = 5;
-    private const int MaxModifiedHorizontalAngle = 5;
-    private const int MaxHorizontalAngle = 15;
-
-    private const int MaxSpeed = 5;
-    private const int SpeedChangeStep = 25;
-    private float currentSpeed;
-    private bool decreaseSpeed;
-
-    private int upperBorder = 6;
-    private int lowerBorder = -6;
-
-    private int currentHorizontalAngle;
-
-    private int direction;
-    public AirplaneStats stats;
-
-    private float speedModifier;
-
-    private Transform airplane;
+    
     private Transform mainCamera;
 
-    void Awake()
+    public void Awake()
     {
-        airplane = gameObject.transform;
+        base.Awake();
         mainCamera = Camera.main.transform;
     }
-
-    private Vector3 forewardMovement;
-    void Update()
+        
+    public void Update()
     {
         // Reset rotation
         this.currentHorizontalAngle = 0;
         airplane.rotation = Quaternion.AngleAxis(0, Vector3.right);
 
-        forewardMovement = Vector3.forward * (Time.deltaTime * (ConstantSpeed + this.speedModifier));
-
+        base.Update();
+        
         airplane.Translate(forewardMovement, Space.World);
         mainCamera.Translate(forewardMovement, Space.World);
 
         // TODO: Add the side movement at a later stage.
         HandleInput();
+
         HandleDirectionalMovement();
         UpdateHorizontalAngle();
 
