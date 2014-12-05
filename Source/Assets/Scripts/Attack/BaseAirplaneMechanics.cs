@@ -16,7 +16,7 @@ public class BaseAirplaneMechanics : MonoBehaviour {
     protected const int MaxHorizontalAngle = 10;
 
     protected const int MaxSpeed = 5;
-    protected const int SpeedChangeStep = 25;
+    protected const int SpeedChangeStep = 15;
     protected float currentSpeed;
     protected bool decreaseSpeed;
 
