@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Airplane : BaseAirplaneMechanics
 {
-    
     private Transform mainCamera;
 
     public void Awake()
