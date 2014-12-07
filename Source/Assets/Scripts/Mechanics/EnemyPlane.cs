@@ -4,25 +4,23 @@ using System;
 
 public class EnemyPlane : BaseAirplaneMechanics
 {
-
     private System.Random random = new System.Random();
     private int[] directions = new int[] { DirectionLeft, DirectionUp, DirectionRight, DirectionDown };
-    private float redirectTime; 
+    private float redirectTime;
 
     public void Awake()
     {
         base.Awake();
-
         direction = ChooseDirection();
+        initialRotation = airplane.rotation;
+        space = Space.Self;
     }
-
+    
     public void Update()
     {
-        base.Update();
-        airplane.Translate(forewardMovement, Space.Self);
         HandleMovement();
-        HandleDirectionalMovement();
-        UpdateHorizontalAngle();
+        base.Update();
+       
     }
 
     private void HandleMovement()
@@ -32,11 +30,9 @@ public class EnemyPlane : BaseAirplaneMechanics
         {
             redirectTime = RedirectTime();
             direction = ChooseDirection();
-            Debug.Log("Redirect time " + redirectTime + "------ Time:" + Time.time);
 
             if (direction == DirectionDown)
             {
-
                 GoDown();
             }
             else if (direction == DirectionUp)
@@ -45,11 +41,11 @@ public class EnemyPlane : BaseAirplaneMechanics
             }
             else if (direction == DirectionLeft)
             {
-                //GoLeft();
+                GoLeft();
             }
             else if (direction == DirectionRight)
             {
-                //GoRight();
+                GoRight();
             }
         }
     }

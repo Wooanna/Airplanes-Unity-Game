@@ -13,17 +13,24 @@ public class BaseAirplaneMechanics : MonoBehaviour {
     protected const int MinSpeedModifier = -2;
     protected const int MaxSpeedModifier = 5;
     protected const int MaxModifiedHorizontalAngle = 2;
-    protected const int MaxHorizontalAngle = 10;
+    protected const int MaxAngle = 10;
+    protected const int MaxTiltAngle = 15;
 
     protected const int MaxSpeed = 5;
     protected const int SpeedChangeStep = 15;
-    protected float currentSpeed;
-    protected bool decreaseSpeed;
+    protected float currentVerticalSpeed;
+    protected float currentHorizontalSpeed;
+    protected bool decreaseVerticalSpeed;
+    protected bool decreaseHorizontalSpeed;
 
     protected int upperBorder = 6;
     protected int lowerBorder = -6;
+    protected int leftBorder = -6;
+    protected int rightBorder = 6;
+    
 
-    protected int currentHorizontalAngle;
+    protected int currentAngle;
+    protected int tiltAngle;
 
     protected int direction;
 
@@ -32,6 +39,10 @@ public class BaseAirplaneMechanics : MonoBehaviour {
     protected float speedModifier;
 
     protected Transform airplane;
+
+    protected Quaternion initialRotation;
+
+    protected Space space;
 
     public void Awake()
     {
@@ -42,7 +53,18 @@ public class BaseAirplaneMechanics : MonoBehaviour {
 
     public void Update()
     {
+        this.currentAngle = 0;
+        this.tiltAngle = 0;
+        airplane.rotation = initialRotation;
         forewardMovement = Vector3.forward * (Time.deltaTime * (ConstantSpeed + this.speedModifier));
+
+        airplane.Translate(forewardMovement, space);
+        
+        HandleDirectionalMovement();
+        UpdateAngle();
+        airplane.Rotate(Vector3.right, currentAngle);
+        airplane.Rotate(Vector3.back, tiltAngle);
+
     }
 
     protected void SpeedUp() 
@@ -84,28 +106,40 @@ public class BaseAirplaneMechanics : MonoBehaviour {
         }
     }
 
-    protected void UpdateHorizontalAngle()
+    protected void UpdateAngle()
     {
-        if (currentSpeed > 0)
+        if (currentVerticalSpeed > 0)
         {
             if ((direction & DirectionUp) > 0)
             {
-                currentHorizontalAngle -= (int)((currentSpeed / MaxSpeed) * MaxHorizontalAngle);
+                currentAngle -= (int)((currentVerticalSpeed / MaxSpeed) * MaxAngle);
             }
             else if ((direction & DirectionDown) > 0)
             {
-                currentHorizontalAngle += (int)((currentSpeed / MaxSpeed) * MaxHorizontalAngle);
+                currentAngle += (int)((currentVerticalSpeed / MaxSpeed) * MaxAngle);
             }
 
+        }
+
+        if (currentHorizontalSpeed > 0)
+        {
+            if ((direction & DirectionLeft) > 0)
+            {
+                tiltAngle -= (int)((currentHorizontalSpeed / MaxSpeed) * MaxTiltAngle);
+            }
+            else if ((direction & DirectionRight) > 0)
+            {
+                tiltAngle += (int)((currentHorizontalSpeed / MaxSpeed) * MaxTiltAngle);
+            }
         }
 
         if (this.speedModifier > 0)
         {
-            currentHorizontalAngle += (int)((speedModifier / MaxSpeedModifier) * MaxModifiedHorizontalAngle);
+            currentAngle += (int)((speedModifier / MaxSpeedModifier) * MaxModifiedHorizontalAngle);
         }
         else if (this.speedModifier < 0)
         {
-            currentHorizontalAngle += (int)((speedModifier / -MinSpeedModifier) * MaxModifiedHorizontalAngle);
+            currentAngle += (int)((speedModifier / -MinSpeedModifier) * MaxModifiedHorizontalAngle);
         }
     }
 
@@ -116,27 +150,36 @@ public class BaseAirplaneMechanics : MonoBehaviour {
         {
             if ((this.direction & DirectionUp) > 0)
             {
-                this.gameObject.transform.Translate(Vector3.up * (currentSpeed * Time.deltaTime), Space.World);
+                this.airplane.Translate(Vector3.up * (currentVerticalSpeed * Time.deltaTime), Space.World);
             }
             else if ((this.direction & DirectionDown) > 0)
             {
-                this.gameObject.transform.Translate(Vector3.down * (currentSpeed * Time.deltaTime), Space.World);
+                this.airplane.Translate(Vector3.down * (currentVerticalSpeed * Time.deltaTime), Space.World);
+            }
+
+            if ((this.direction & DirectionLeft) > 0)
+            {
+                this.airplane.Translate(Vector3.left * (currentHorizontalSpeed * Time.deltaTime), Space.World);
+            }
+            else if ((this.direction & DirectionRight) > 0)
+            {
+                this.airplane.Translate(Vector3.right * (currentHorizontalSpeed * Time.deltaTime), Space.World);
             }
         }
     }
 
     protected void GoDown() 
     {
-        if (gameObject.transform.position.y < lowerBorder)
+        if (airplane.position.y < lowerBorder)
         {
-            decreaseSpeed = true;
+            decreaseVerticalSpeed = true;
         }
         else
         {
-            currentSpeed += SpeedChangeStep * Time.deltaTime;
-            if (currentSpeed > MaxSpeed)
+            currentVerticalSpeed += SpeedChangeStep * Time.deltaTime;
+            if (currentVerticalSpeed > MaxSpeed)
             {
-                currentSpeed = MaxSpeed;
+                currentVerticalSpeed = MaxSpeed;
             }
 
             this.direction &= ~DirectionUp;
@@ -146,16 +189,16 @@ public class BaseAirplaneMechanics : MonoBehaviour {
 
     protected void GoUp()
     {
-        if (gameObject.transform.position.y > upperBorder)
+        if (airplane.position.y > upperBorder)
         {
-            decreaseSpeed = true;
+            decreaseVerticalSpeed = true;
         }
         else
         {
-            currentSpeed += SpeedChangeStep * Time.deltaTime;
-            if (currentSpeed > MaxSpeed)
+            currentVerticalSpeed += SpeedChangeStep * Time.deltaTime;
+            if (currentVerticalSpeed > MaxSpeed)
             {
-                currentSpeed = MaxSpeed;
+                currentVerticalSpeed = MaxSpeed;
             }
 
             this.direction &= ~DirectionDown;
@@ -163,13 +206,61 @@ public class BaseAirplaneMechanics : MonoBehaviour {
         }
     }
 
-    protected void DecreaseSpeed()
+    protected void GoLeft()
     {
-        currentSpeed -= SpeedChangeStep * Time.deltaTime;
-        if (currentSpeed <= 0)
+        if (airplane.position.x < leftBorder)
         {
-            currentSpeed = 0;
-            this.decreaseSpeed = false;
+            decreaseHorizontalSpeed = true;
+        }
+        else 
+        {
+            currentHorizontalSpeed += SpeedChangeStep * Time.deltaTime;
+            if (currentHorizontalSpeed > MaxSpeed)
+            {
+                currentHorizontalSpeed = MaxSpeed;
+            }
+
+            this.direction |= DirectionLeft;
+            this.direction &= ~DirectionRight;
+        }
+    }
+
+    protected void GoRight() 
+    {
+        if (airplane.position.x > rightBorder)
+        {
+            decreaseHorizontalSpeed = true;
+        }
+        else
+        {
+            currentHorizontalSpeed += SpeedChangeStep * Time.deltaTime;
+            if (currentHorizontalSpeed > MaxSpeed)
+            {
+                currentHorizontalSpeed = MaxSpeed;
+            }
+
+            this.direction |= DirectionRight;
+            this.direction &= ~DirectionLeft;
+        }
+    }
+
+    protected void DecreaseVerticalSpeed()
+    {
+        currentVerticalSpeed -= SpeedChangeStep * Time.deltaTime;
+        if (currentVerticalSpeed <= 0)
+        {
+            currentVerticalSpeed = 0;
+            this.decreaseVerticalSpeed = false;
+        }
+    }
+
+    protected void DecreaseHorizontalSpeed()
+    {
+        currentHorizontalSpeed -= SpeedChangeStep * Time.deltaTime;
+        if (currentHorizontalSpeed <= 0)
+        {
+            currentHorizontalSpeed = 0;
+            this.decreaseHorizontalSpeed = false;
         }
     }
 }

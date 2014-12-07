@@ -10,33 +10,22 @@ public class Airplane : BaseAirplaneMechanics
     {
         base.Awake();
         mainCamera = Camera.main.transform;
+        initialRotation = airplane.rotation;
+        space = Space.World;
     }
         
     public void Update()
     {
         // Reset rotation
-        this.currentHorizontalAngle = 0;
-        airplane.rotation = Quaternion.AngleAxis(0, Vector3.right);
-
+       
         base.Update();
-        
-        airplane.Translate(forewardMovement, Space.World);
         mainCamera.Translate(forewardMovement, Space.World);
 
         // TODO: Add the side movement at a later stage.
         HandleInput();
 
-        HandleDirectionalMovement();
-        UpdateHorizontalAngle();
-
-        // Apply updated rotation
-        airplane.Rotate(Vector3.right, currentHorizontalAngle);
-
         // TODO: Apply side rotation.
     }
-
-    
-    
 
     private void HandleInput()
     {
@@ -53,13 +42,14 @@ public class Airplane : BaseAirplaneMechanics
             NormalizeSpeed();
         }
 
-        if (this.decreaseSpeed)
+        //vertical movement
+        if (this.decreaseVerticalSpeed)
         {
-            DecreaseSpeed();
+            DecreaseVerticalSpeed();
         }
         else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
         {
-            this.decreaseSpeed = true;
+            this.decreaseVerticalSpeed = true;
         }
         else
         {
@@ -70,6 +60,28 @@ public class Airplane : BaseAirplaneMechanics
             else if (Input.GetKey(KeyCode.DownArrow))
             {
                 GoDown();
+            }
+            
+        }
+
+        //horizontal movement
+        if (this.decreaseHorizontalSpeed)
+        {
+            DecreaseHorizontalSpeed();
+        }
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.Z))
+        {
+            this.decreaseHorizontalSpeed = true;
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                GoLeft();
+            }
+            else if (Input.GetKey(KeyCode.Z))
+            {
+                GoRight();
             }
         }
     }
