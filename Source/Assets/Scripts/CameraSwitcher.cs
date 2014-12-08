@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraSwitcher : MonoBehaviour {
 
     Quaternion initialRotation;
-    public Camera airplaneCamera;
+    //public Camera airplaneCamera;
     public Camera rearCamera;
     public Transform rearCameraTransform;
 
@@ -15,21 +15,21 @@ public class CameraSwitcher : MonoBehaviour {
 
     }
 
-	void Update () {
+	void LateUpdate () {
 
         rearCameraTransform.rotation = initialRotation;
 
-        if (Input.GetKeyUp(KeyCode.Q)) {
-            if (airplaneCamera.enabled == true)
-            {
-                airplaneCamera.enabled = false;
-                rearCamera.enabled = true;
-            }
-            else 
-            {
-                rearCamera.enabled = false;
-                airplaneCamera.enabled = true;
-            }
-        }
+        //if (Input.GetKeyUp(KeyCode.Q)) {
+        //    if (airplaneCamera.enabled == true)
+        //    {
+        //        airplaneCamera.enabled = false;
+        //        rearCamera.enabled = true;
+        //    }
+        //    else 
+        //    {
+        //        rearCamera.enabled = false;
+        //        airplaneCamera.enabled = true;
+        //    }
+        //}
 	}
 }

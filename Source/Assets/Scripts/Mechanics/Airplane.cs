@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Airplane : BaseAirplaneMechanics
 {
-    private Transform mainCamera;
+    //private Transform mainCamera;
 
     public void Awake()
     {
         base.Awake();
-        mainCamera = Camera.main.transform;
+        //mainCamera = Camera.main.transform;
         initialRotation = airplane.rotation;
         space = Space.World;
     }
@@ -18,7 +18,7 @@ public class Airplane : BaseAirplaneMechanics
         // Reset rotation
        
         base.Update();
-        mainCamera.Translate(forewardMovement, Space.World);
+        //mainCamera.Translate(forewardMovement, Space.World);
 
         // TODO: Add the side movement at a later stage.
         HandleInput();
@@ -28,11 +28,11 @@ public class Airplane : BaseAirplaneMechanics
 
     private void HandleInput()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.X))
         {
             SpeedUp();
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.Z))
         {
             SlowDown();
         }
@@ -68,17 +68,17 @@ public class Airplane : BaseAirplaneMechanics
         {
             DecreaseHorizontalSpeed();
         }
-        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.Z))
+        else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             this.decreaseHorizontalSpeed = true;
         }
         else
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 GoLeft();
             }
-            else if (Input.GetKey(KeyCode.Z))
+            else if (Input.GetKey(KeyCode.RightArrow))
             {
                 GoRight();
             }

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
     {
         if (GUI.Button(new Rect(10, 70, 70, 30), "Play"))
         {
-            Application.LoadLevel("Levels");
+            Application.LoadLevel("AirplaneMechanics");
         }
         else if (GUI.Button(new Rect(10, 110, 70, 30), "Options"))
         {

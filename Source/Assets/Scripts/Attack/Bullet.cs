@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
-    private const int Speed = 40;
+    private const int Speed = 50;
     private const int MaxDistance = 50;
 
     public int damage = 15;

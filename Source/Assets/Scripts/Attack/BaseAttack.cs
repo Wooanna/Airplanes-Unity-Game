@@ -10,7 +10,7 @@ public class BaseAttack : MonoBehaviour {
     public float reloadTime = 1.5f;
     protected float nextFireTime;
 
-    void Awake()
+    void Start()
     {
         bullet.GetComponent<Bullet>().damage = damage;
     }
