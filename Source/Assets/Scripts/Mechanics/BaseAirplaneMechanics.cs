@@ -25,8 +25,8 @@ public class BaseAirplaneMechanics : MonoBehaviour {
 
     protected int upperBorder = 6;
     protected int lowerBorder = -6;
-    protected int leftBorder = -6;
-    protected int rightBorder = 6;
+    protected int leftBorder = -20;
+    protected int rightBorder = 20;
     
 
     protected int currentAngle;
