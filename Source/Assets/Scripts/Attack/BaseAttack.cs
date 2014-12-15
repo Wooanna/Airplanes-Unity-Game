@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class BaseAttack : MonoBehaviour {
 
     public Transform[] guns;
     public GameObject bullet;
+    public AudioClip shotSound;
 
     public float reloadTime = .5f;
     protected float nextFireTime;
@@ -20,6 +22,8 @@ public class BaseAttack : MonoBehaviour {
         {
             Instantiate(bullet, gun.position, gun.rotation);
         }
+
+        this.audio.PlayOneShot(this.shotSound);
     }
 
     protected bool CanShoot()
