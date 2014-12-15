@@ -226,7 +226,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 9c7e453ed94df394fb9a2442415ff849, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -332,6 +332,7 @@ MonoBehaviour:
   - {fileID: 400002}
   - {fileID: 400004}
   bullet: {fileID: 100000, guid: 73a60e0a3edccb340926840e76564ee3, type: 2}
+  shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
   reloadTime: .100000001
 --- !u!114 &11400008
 MonoBehaviour:

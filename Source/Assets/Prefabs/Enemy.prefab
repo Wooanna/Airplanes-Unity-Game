@@ -220,6 +220,7 @@ MonoBehaviour:
   - {fileID: 400004}
   - {fileID: 400006}
   bullet: {fileID: 100000, guid: 7907a409fa0d69b49947b483ab975a0f, type: 2}
+  shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
   reloadTime: .5
 --- !u!114 &11400002
 MonoBehaviour:
