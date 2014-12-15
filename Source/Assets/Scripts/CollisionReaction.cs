@@ -4,32 +4,10 @@ using System.Collections;
 public class CollisionReaction : MonoBehaviour
 {
 
-    private int damage;
-    private int heal;
-    private int armor;
-    public WoodBoxType type;
-    private Material boxMaterial;
-
-    void Start()
-    {
-        if (type == WoodBoxType.ArmorBox)
-        {
-            boxMaterial =  Resources.Load("ArmorBoxMaterial", typeof(Material)) as Material;
-            this.armor = 1;
-        }
-        if (type == WoodBoxType.HealBox)
-        {
-            boxMaterial = Resources.Load("HealBoxMaterial", typeof(Material)) as Material;
-            this.heal = 10;
-        }
-        if (type == WoodBoxType.QuestionBox)
-        {
-            boxMaterial = Resources.Load("QuestionBoxMaterial", typeof(Material)) as Material;
-            this.damage = 20;
-        }
-        gameObject.renderer.material = boxMaterial;
-    }
-
+    public int damage;
+    public int heal;
+    public int armor;
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player")
@@ -40,20 +18,34 @@ public class CollisionReaction : MonoBehaviour
         ElementStats stats = other.gameObject.GetComponent<ElementStats>();
         if (stats != null)
         {
-            if (type == WoodBoxType.ArmorBox)
+            CollisionReaction otherCollision = other.gameObject.GetComponent<CollisionReaction>();
+            int damage = 0;
+            if (otherCollision != null)
+            {
+                damage = otherCollision.damage;
+            }
+            
+            if (this.armor > 0)
             {
                 stats.RepairArmor(this.armor);
             }
-            if (type == WoodBoxType.HealBox)
+            if (this.heal > 0)
             {
                 stats.Heal(this.heal);
             }
-            if (type == WoodBoxType.QuestionBox)
+            if (this.damage > 0)
             {
                 stats.InflictDamage(this.damage);
             }
 
-            Destroy(gameObject);
+            if (damage > 0)
+            {
+                ElementStats selfStats = GetComponent<ElementStats>();
+                if (selfStats != null)
+                {
+                    selfStats.InflictDamage(damage);
+                }
+            }
         }
     }
 }

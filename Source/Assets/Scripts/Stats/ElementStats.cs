@@ -38,6 +38,10 @@ public class ElementStats : MonoBehaviour {
 
     public void InflictDamage(int amount)
     {
+        if (gameObject.tag == "Player")
+        {
+            Debug.Log(amount);
+        }
         Stats.AdjustHealth(-(AdjustedDamage(amount)));
         armor -= amount >> 3;
         if (armor < 0)

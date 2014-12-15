@@ -5,15 +5,9 @@ public class BaseAttack : MonoBehaviour {
 
     public Transform[] guns;
     public GameObject bullet;
-    public int damage = 15;
 
-    public float reloadTime = 1.5f;
+    public float reloadTime = .5f;
     protected float nextFireTime;
-
-    void Start()
-    {
-        bullet.GetComponent<Bullet>().damage = damage;
-    }
 
     protected void Reload()
     {

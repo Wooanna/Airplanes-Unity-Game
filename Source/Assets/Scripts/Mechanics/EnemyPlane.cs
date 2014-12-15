@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class EnemyPlane : BaseAirplaneMechanics
 {
-    private System.Random random = new System.Random();
     private int[] directions = new int[] { DirectionLeft, DirectionUp, DirectionRight, DirectionDown };
     private float redirectTime;
 
@@ -18,9 +15,7 @@ public class EnemyPlane : BaseAirplaneMechanics
     
     public void Update()
     {
-        HandleMovement();
-        base.Update();
-       
+        HandleMovement();    
     }
 
     private void HandleMovement()
@@ -52,11 +47,11 @@ public class EnemyPlane : BaseAirplaneMechanics
 
     private int ChooseDirection()
     {
-        return directions[random.Next(directions.Length)];
+        return directions[Random.Range(0, directions.Length)];
     }
 
     private float RedirectTime()
     {
-        return Time.time + random.Next(3);
+        return Time.time + Random.Range(0, 3);
     }
 }

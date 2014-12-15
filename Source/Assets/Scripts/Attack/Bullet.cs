@@ -22,24 +22,33 @@ public class Bullet : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            Debug.Log("Bullet died...");
-        }        
+        }
     }
 
     void OnTriggerEnter(Collider collision)
     {
         ElementStats elementStats = collision.gameObject.GetComponent<ElementStats>();
-        Debug.Log("Bullet collided");
+
         if (elementStats != null)
         {
+            //if (collision.gameObject.name == "Player")
+            //{
+            //    foreach (var item in GameObject.FindGameObjectsWithTag("Bullet"))
+            //    {
+            //        item.name = "NeTozi";
+            //    }
+
+            //    name = "MAMICATA TI";
+            //    Time.timeScale = 0;
+            //}
             HandleCollision(elementStats);
         }
     }
 
     private void HandleCollision(ElementStats stats)
     {
-        Debug.Log("Bullet damaged!");
         stats.InflictDamage(this.damage);
-        Destroy(gameObject); // TODO: add a small explosion for the bullet dissapearance.
+        Destroy(gameObject);
+        // TODO: add a small explosion for the bullet dissapearance.
     }
 }

@@ -3,27 +3,17 @@ using System.Collections;
 
 public class Airplane : BaseAirplaneMechanics
 {
-    //private Transform mainCamera;
 
     public void Awake()
     {
         base.Awake();
-        //mainCamera = Camera.main.transform;
         initialRotation = airplane.rotation;
         space = Space.World;
     }
         
     public void Update()
     {
-        // Reset rotation
-       
-        base.Update();
-        //mainCamera.Translate(forewardMovement, Space.World);
-
-        // TODO: Add the side movement at a later stage.
         HandleInput();
-
-        // TODO: Apply side rotation.
     }
 
     private void HandleInput()
@@ -52,11 +42,11 @@ public class Airplane : BaseAirplaneMechanics
         }
         else
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 GoUp();
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCode.UpArrow))
             {
                 GoDown();
             }
