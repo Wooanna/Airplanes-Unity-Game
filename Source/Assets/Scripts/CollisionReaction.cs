@@ -7,6 +7,8 @@ public class CollisionReaction : MonoBehaviour
     public int damage;
     public int heal;
     public int armor;
+
+	public bool random;
     
     void OnTriggerEnter(Collider other)
     {

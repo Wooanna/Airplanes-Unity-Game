@@ -2,20 +2,20 @@
 using System.Collections;
 
 public class ElementStats : MonoBehaviour {
-    private const float MaxArmor = 200;
-    public BaseStats Stats { get; set; }
+
+
+    public const float MaxArmor = 200;
+	public const int MaxHealth = 100;
+	public const int MinHealth = 0;
+
+	protected int health = 100;
 
     public int maxArmor = 5;
     public int armor = 5;
 
-    public ElementStats()
+    public virtual void Heal(int amount)
     {
-        Stats = new BaseStats();
-    }
-
-    public void Heal(int amount)
-    {
-        Stats.AdjustHealth(amount);
+        AdjustHealth(amount);
     }
 
     public void IncreaseArmor(int ammount)
@@ -36,21 +36,19 @@ public class ElementStats : MonoBehaviour {
         }
     }
 
-    public void InflictDamage(int amount)
+    public virtual void InflictDamage(int amount)
     {
-        if (gameObject.tag == "Player")
-        {
-            Debug.Log(amount);
-        }
-        Stats.AdjustHealth(-(AdjustedDamage(amount)));
+        AdjustHealth(-(AdjustedDamage(amount)));
         armor -= amount >> 3;
         if (armor < 0)
         {
             armor = 0;
         }
-        if (Stats.Health <= 0)
+
+		if (this.health <= 0)
         {
             Destroy(gameObject); // TODO: add explosion or something
+			//rigidbody.useGravity = true;
         }
     }
 
@@ -58,4 +56,17 @@ public class ElementStats : MonoBehaviour {
     {
         return (int)(amount * (1 - (armor / MaxArmor)));
     }
+
+	public void AdjustHealth(int ammount)
+	{
+		this.health += ammount;
+		if (this.health > MaxHealth)
+		{
+			this.health = MaxHealth;
+		}
+		if (this.health < MinHealth)
+		{
+			this.health = MinHealth;
+		}
+	}
 }
