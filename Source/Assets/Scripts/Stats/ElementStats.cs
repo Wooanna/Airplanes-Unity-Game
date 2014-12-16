@@ -47,8 +47,7 @@ public class ElementStats : MonoBehaviour {
 
 		if (this.health <= 0)
         {
-            Destroy(gameObject); // TODO: add explosion or something
-			//rigidbody.useGravity = true;
+			Die();
         }
     }
 
@@ -68,5 +67,10 @@ public class ElementStats : MonoBehaviour {
 		{
 			this.health = MinHealth;
 		}
+	}
+
+	protected virtual void Die()
+	{
+
 	}
 }

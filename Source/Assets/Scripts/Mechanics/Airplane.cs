@@ -4,9 +4,10 @@ using System.Collections;
 public class Airplane : BaseAirplaneMechanics
 {
 
-    public void Awake()
+    public new void Awake()
     {
         base.Awake();
+
         initialRotation = airplane.rotation;
         space = Space.World;
     }

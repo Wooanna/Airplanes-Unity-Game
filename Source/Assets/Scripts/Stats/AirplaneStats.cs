@@ -27,13 +27,11 @@ public class AirplaneStats : ElementStats {
 
 		if (health >= SmokeHealthBorder)
 		{
-			Debug.Log("Stopping smoke at " + health);
 			this.smokeSystem.SetActive(false);
 		}
 		
-		if (health >= FireHealthBorder);
+		if (health >= FireHealthBorder)
 		{
-			Debug.Log("Stopping fire at " + health);
 			this.fireSystem.SetActive(false);
 		}
 	}

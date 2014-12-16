@@ -4,8 +4,6 @@ using System.Collections;
 public class LevelGenerator : MonoBehaviour
 {
 
-    Transform transform;
-
     public GameObject[] obstacles;
     public GameObject[] enemies;
     public GameObject[] bonuses;
@@ -25,7 +23,6 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        this.transform = gameObject.transform;
         UpdateSpawnCoolDowns();
     }
 

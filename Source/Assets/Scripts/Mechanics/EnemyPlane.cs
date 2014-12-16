@@ -5,7 +5,7 @@ public class EnemyPlane : BaseAirplaneMechanics
     private int[] directions = new int[] { DirectionLeft, DirectionUp, DirectionRight, DirectionDown };
     private float redirectTime;
 
-    public void Awake()
+    public new void Awake()
     {
         base.Awake();
         direction = ChooseDirection();
