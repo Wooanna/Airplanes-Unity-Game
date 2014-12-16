@@ -3,8 +3,8 @@ using System.Collections;
 
 public class AirplaneStats : ElementStats {
 
-	private const int SmokeHealthBorder = 80;
-	private const int FireHealthBorder = 40;
+	public int SmokeHealthBorder = 80;
+	public int FireHealthBorder = 40;
 
 	public GameObject fireSystem;
 	public GameObject smokeSystem;
@@ -25,13 +25,13 @@ public class AirplaneStats : ElementStats {
 	{
 		base.Heal (amount);
 
-		if (health >= 80)
+		if (health >= SmokeHealthBorder)
 		{
 			Debug.Log("Stopping smoke at " + health);
 			this.smokeSystem.SetActive(false);
 		}
 		
-		if (health >= 50);
+		if (health >= FireHealthBorder);
 		{
 			Debug.Log("Stopping fire at " + health);
 			this.fireSystem.SetActive(false);
@@ -42,11 +42,11 @@ public class AirplaneStats : ElementStats {
 	{
 		base.InflictDamage (amount);
 
-		if (this.health < 80) {
+		if (this.health < SmokeHealthBorder) {
 			this.smokeSystem.SetActive(true);
 		}
 
-		if (this.health < 50) {
+		if (this.health < FireHealthBorder) {
 			this.fireSystem.SetActive(true);
 		}
 	}
