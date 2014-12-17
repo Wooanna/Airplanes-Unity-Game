@@ -10,8 +10,13 @@ public class EnemyPlane : BaseAirplaneMechanics
         base.Awake();
         direction = ChooseDirection();
         initialRotation = airplane.rotation;
-        space = Space.Self;
     }
+
+	protected override void ApplyAngle ()
+	{
+		airplane.Rotate(transform.right, currentAngle);
+		airplane.Rotate(transform.forward, tiltAngle);
+	}
     
     public void Update()
     {

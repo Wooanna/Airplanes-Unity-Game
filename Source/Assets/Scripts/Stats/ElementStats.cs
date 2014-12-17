@@ -4,7 +4,7 @@ using System.Collections;
 public class ElementStats : MonoBehaviour {
 
 
-    public const float MaxArmor = 200;
+    public const int MaxArmor = 200;
 	public const int MaxHealth = 100;
 	public const int MinHealth = 0;
 
@@ -23,7 +23,7 @@ public class ElementStats : MonoBehaviour {
         this.maxArmor += ammount;
         if (maxArmor > MaxArmor)
         {
-            maxArmor = (int)MaxArmor;
+            maxArmor = MaxArmor;
         }
     }
 
@@ -56,7 +56,7 @@ public class ElementStats : MonoBehaviour {
         return (int)(amount * (1 - (armor / MaxArmor)));
     }
 
-	public void AdjustHealth(int ammount)
+	private void AdjustHealth(int ammount)
 	{
 		this.health += ammount;
 		if (this.health > MaxHealth)
@@ -71,6 +71,6 @@ public class ElementStats : MonoBehaviour {
 
 	protected virtual void Die()
 	{
-
+		Destroy (gameObject);
 	}
 }

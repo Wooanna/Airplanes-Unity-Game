@@ -10,17 +10,12 @@ public class CollisionReaction : MonoBehaviour
 
 	public bool random;
     
-    void OnTriggerEnter(Collider other)
+	void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag != "Player")
-        {
-            return;
-        }
-
-        ElementStats stats = other.gameObject.GetComponent<ElementStats>();
+		ElementStats stats = collision.gameObject.GetComponent<ElementStats>();
         if (stats != null)
         {
-            CollisionReaction otherCollision = other.gameObject.GetComponent<CollisionReaction>();
+			CollisionReaction otherCollision = collision.gameObject.GetComponent<CollisionReaction>();
             int damage = 0;
             if (otherCollision != null)
             {

@@ -9,13 +9,18 @@ public class Airplane : BaseAirplaneMechanics
         base.Awake();
 
         initialRotation = airplane.rotation;
-        space = Space.World;
     }
         
     public void Update()
     {
         HandleInput();
     }
+
+	protected override void ApplyAngle ()
+	{
+		airplane.Rotate(transform.right, currentAngle);
+		airplane.Rotate(-transform.forward, tiltAngle);
+	}
 
     private void HandleInput()
     {

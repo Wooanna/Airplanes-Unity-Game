@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseAirplaneMechanics : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody))]
+public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
     protected const int DirectionLeft = 1;
     protected const int DirectionUp = 1 << 1;
@@ -41,29 +42,32 @@ public class BaseAirplaneMechanics : MonoBehaviour {
 
     protected Quaternion initialRotation;
 
-    protected Space space;
-
     public void Awake()
     {
         airplane = gameObject.transform;
     }
 
-    protected Vector3 forewardMovement;
+    protected Vector3 movementDirection;
 
     public void FixedUpdate()
     {
-        this.currentAngle = 0;
-        this.tiltAngle = 0;
-        airplane.rotation = initialRotation;
-        forewardMovement = Vector3.forward * (Time.deltaTime * (constantSpeed + this.speedModifier));
+		if (!rigidbody.useGravity)
+		{
+			this.currentAngle = 0;
+			this.tiltAngle = 0;
+			airplane.rotation = initialRotation;
 
-        airplane.Translate(forewardMovement, space);
-        
-        HandleDirectionalMovement();
-        UpdateAngle();
-        airplane.Rotate(Vector3.right, currentAngle);
-        airplane.Rotate(Vector3.back, tiltAngle);
+			movementDirection = transform.forward * ((constantSpeed + this.speedModifier));
+			ApplyDirectionalMovement();
+
+			rigidbody.velocity = movementDirection;
+
+			UpdateAngle();
+			ApplyAngle();
+		}
     }
+
+	protected abstract void ApplyAngle ();
 
     protected void SpeedUp() 
     {
@@ -142,26 +146,26 @@ public class BaseAirplaneMechanics : MonoBehaviour {
     }
 
 
-    protected void HandleDirectionalMovement()
+    protected void ApplyDirectionalMovement()
     {
         if (this.direction > 0)
         {
             if ((this.direction & DirectionUp) > 0)
             {
-                this.airplane.Translate(Vector3.up * (currentVerticalSpeed * Time.deltaTime), Space.World);
+                this.movementDirection += transform.up * currentVerticalSpeed;
             }
             else if ((this.direction & DirectionDown) > 0)
             {
-                this.airplane.Translate(Vector3.down * (currentVerticalSpeed * Time.deltaTime), Space.World);
+                this.movementDirection += -transform.up * currentVerticalSpeed;
             }
 
             if ((this.direction & DirectionLeft) > 0)
             {
-                this.airplane.Translate(Vector3.left * (currentHorizontalSpeed * Time.deltaTime), Space.World);
+				this.movementDirection += -transform.right * currentHorizontalSpeed;
             }
             else if ((this.direction & DirectionRight) > 0)
             {
-                this.airplane.Translate(Vector3.right * (currentHorizontalSpeed * Time.deltaTime), Space.World);
+                this.movementDirection += transform.right * currentHorizontalSpeed;
             }
         }
     }
