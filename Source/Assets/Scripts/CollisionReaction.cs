@@ -7,19 +7,41 @@ public class CollisionReaction : MonoBehaviour
     public int damage;
     public int heal;
     public int armor;
-
-	public bool random;
+    public bool playerOnly;
+    public bool random;
     
-	void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-		ElementStats stats = collision.gameObject.GetComponent<ElementStats>();
+        if (playerOnly && collision.gameObject.tag != "Player")
+        {
+            return;
+        }
+
+        ElementStats stats = collision.gameObject.GetComponent<ElementStats>();
         if (stats != null)
         {
-			CollisionReaction otherCollision = collision.gameObject.GetComponent<CollisionReaction>();
-            int damage = 0;
+            if (this.random)
+            {
+                if (Random.Range(0, 101) > 10)
+                {
+                    damage = 0;
+                }
+                if (damage > 0 || Random.Range(0, 101) < 15)
+                {
+                    armor = 0;
+                }
+
+                if (damage > 0 || Random.Range(0, 101) < 10)
+                {
+                    this.heal = 0;
+                }
+            }
+
+            CollisionReaction otherCollision = collision.gameObject.GetComponent<CollisionReaction>();
+            int collisionDamage = 0;
             if (otherCollision != null)
             {
-                damage = otherCollision.damage;
+                collisionDamage = otherCollision.damage;
             }
             
             if (this.armor > 0)
@@ -35,7 +57,7 @@ public class CollisionReaction : MonoBehaviour
                 stats.InflictDamage(this.damage);
             }
 
-            if (damage > 0)
+            if (collisionDamage > 0)
             {
                 ElementStats selfStats = GetComponent<ElementStats>();
                 if (selfStats != null)
