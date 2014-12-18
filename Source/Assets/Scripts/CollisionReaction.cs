@@ -9,15 +9,25 @@ public class CollisionReaction : MonoBehaviour
     public int armor;
     public bool playerOnly;
     public bool random;
-    
+
+    void OnTriggerEnter(Collider collision)
+    {
+        HandleCollision(collision.gameObject);
+    }
+
     void OnCollisionEnter(Collision collision)
     {
-        if (playerOnly && collision.gameObject.tag != "Player")
+        HandleCollision(collision.gameObject);
+    }
+
+    void HandleCollision(GameObject other)
+    {
+        if (playerOnly && other.tag != "Player")
         {
             return;
         }
-
-        ElementStats stats = collision.gameObject.GetComponent<ElementStats>();
+        
+        ElementStats stats = other.GetComponent<ElementStats>();
         if (stats != null)
         {
             if (this.random)
@@ -30,14 +40,14 @@ public class CollisionReaction : MonoBehaviour
                 {
                     armor = 0;
                 }
-
+                
                 if (damage > 0 || Random.Range(0, 101) < 10)
                 {
                     this.heal = 0;
                 }
             }
-
-            CollisionReaction otherCollision = collision.gameObject.GetComponent<CollisionReaction>();
+            
+            CollisionReaction otherCollision = other.GetComponent<CollisionReaction>();
             int collisionDamage = 0;
             if (otherCollision != null)
             {
@@ -56,7 +66,7 @@ public class CollisionReaction : MonoBehaviour
             {
                 stats.InflictDamage(this.damage);
             }
-
+            
             if (collisionDamage > 0)
             {
                 ElementStats selfStats = GetComponent<ElementStats>();

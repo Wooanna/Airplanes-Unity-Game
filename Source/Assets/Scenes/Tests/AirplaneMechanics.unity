@@ -669,6 +669,7 @@ MonoBehaviour:
   damage: 200
   heal: 0
   armor: 0
+  playerOnly: 0
   random: 0
 --- !u!65 &1457424317
 BoxCollider:
@@ -852,6 +853,7 @@ MonoBehaviour:
   damage: 100000
   heal: 0
   armor: 0
+  playerOnly: 0
   random: 0
 --- !u!1 &2130910771
 GameObject:
