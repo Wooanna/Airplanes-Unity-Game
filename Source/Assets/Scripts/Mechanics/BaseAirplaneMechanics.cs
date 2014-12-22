@@ -53,6 +53,7 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
     {
 		if (!rigidbody.useGravity)
         {
+            rigidbody.velocity = Vector3.zero;
             this.currentAngle = 0;
             this.tiltAngle = 0;
             airplane.rotation = initialRotation;
@@ -60,13 +61,10 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
             movementDirection = transform.forward * ((constantSpeed + this.speedModifier));
             ApplyDirectionalMovement();
 
-            rigidbody.velocity = movementDirection;
+            rigidbody.AddForce(movementDirection, ForceMode.VelocityChange);
 
             UpdateAngle();
             ApplyAngle();
-        } else
-        {
-            rigidbody.velocity = Vector3.zero;
         }
     }
 
