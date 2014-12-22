@@ -8,8 +8,15 @@ public class BaseAttack : MonoBehaviour {
     public GameObject bullet;
     public AudioClip shotSound;
 
+    private ElementStats stats;
+
     public float reloadTime = .5f;
     protected float nextFireTime;
+
+    void Awake()
+    {
+        this.stats = GetComponent<ElementStats>();
+    }
 
     protected void Reload()
     {
@@ -28,6 +35,6 @@ public class BaseAttack : MonoBehaviour {
 
     protected bool CanShoot()
     {
-        return Time.time >= nextFireTime;
+        return Time.time >= nextFireTime && !stats.IsDead();
     }
 }
