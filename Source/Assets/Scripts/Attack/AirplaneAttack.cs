@@ -5,7 +5,7 @@ public class AirplaneAttack : BaseAttack
 {
     void Update()
     {
-        if (CanShoot() && Input.GetKey(KeyCode.Space))
+        if (CanShoot() && Input.GetButton("Fire1"))
         {
             Fire();
             Reload();

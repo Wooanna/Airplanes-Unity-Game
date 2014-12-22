@@ -24,11 +24,11 @@ public class Airplane : BaseAirplaneMechanics
 
     private void HandleInput()
     {
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetAxisRaw("Acceleration") > 0)
         {
             SpeedUp();
         }
-        else if (Input.GetKey(KeyCode.Z))
+        else if (Input.GetAxisRaw("Acceleration") < 0)
         {
             SlowDown();
         }
@@ -42,17 +42,17 @@ public class Airplane : BaseAirplaneMechanics
         {
             DecreaseVerticalSpeed();
         }
-        else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetAxisRaw("Vertical") == 0)
         {
             this.decreaseVerticalSpeed = true;
         }
         else
         {
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetAxisRaw("Vertical") > 0)
             {
                 GoUp();
             }
-            else if (Input.GetKey(KeyCode.UpArrow))
+            else if (Input.GetAxisRaw("Vertical") < 0)
             {
                 GoDown();
             }
@@ -64,17 +64,17 @@ public class Airplane : BaseAirplaneMechanics
         {
             DecreaseHorizontalSpeed();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        else if (Input.GetAxisRaw("Horizontal") == 0)
         {
             this.decreaseHorizontalSpeed = true;
         }
         else
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 GoLeft();
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 GoRight();
             }

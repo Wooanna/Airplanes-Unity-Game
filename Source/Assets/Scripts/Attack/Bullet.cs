@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rigidbody.AddForce(transform.forward * Speed, ForceMode.VelocityChange);
-        Destroy(this, 2);
+        Destroy(gameObject, 2);
     }
 
     void OnCollisionEnter(Collision collision)
