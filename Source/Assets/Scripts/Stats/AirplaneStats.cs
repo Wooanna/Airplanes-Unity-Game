@@ -3,24 +3,24 @@ using System.Collections;
 
 public class AirplaneStats : BaseAirplaneStats {
 
-    static int score;
-    static int gold;
+    static int playerScore;
+    static int playerGold;
 
     public static void AddScorePoints(int points)
     {
-        score += points;
+        playerScore += points;
     }
 
     public static void AddGold(int amount)
     {
-        gold += amount;
+        playerGold += amount;
     }
 
     void OnGUI()
     {
         GUI.Box(new Rect(10, 10, Screen.width / 3, 25), health + "/" + MaxHealth);
         GUI.Box(new Rect(10, 45, Screen.width / 3, 25), armor + "/" + maxArmor);
-        GUI.Box(new Rect(Screen.width >> 1, 10, 50, 25), score.ToString());
-        GUI.Box(new Rect(Screen.width - 50, 10, 50, 25), gold.ToString());
+        GUI.Box(new Rect(Screen.width >> 1, 10, 50, 25), playerScore.ToString());
+        GUI.Box(new Rect(Screen.width - 50, 10, 50, 25), playerGold.ToString());
     }
 }

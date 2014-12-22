@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100000
+  damage: 10000
   heal: 0
   armor: 0
   playerOnly: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100000
+  damage: 10000
   heal: 0
   armor: 0
   playerOnly: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100000
+  damage: 10000
   heal: 0
   armor: 0
   playerOnly: 0
