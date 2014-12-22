@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Airplane : BaseAirplaneMechanics
 {
+    float horizontalAxis;
+    float verticalAxis;
+    float accelerationAxis;
 
     public new void Awake()
     {
@@ -24,11 +27,15 @@ public class Airplane : BaseAirplaneMechanics
 
     private void HandleInput()
     {
-        if (Input.GetAxisRaw("Acceleration") > 0)
+        this.horizontalAxis = Input.GetAxisRaw("Horizontal");
+        this.verticalAxis = Input.GetAxisRaw("Vertical");
+        this.accelerationAxis = Input.GetAxisRaw("Acceleration");
+
+        if (this.accelerationAxis > 0)
         {
             SpeedUp();
         }
-        else if (Input.GetAxisRaw("Acceleration") < 0)
+        else if (this.accelerationAxis < 0)
         {
             SlowDown();
         }
@@ -42,17 +49,17 @@ public class Airplane : BaseAirplaneMechanics
         {
             DecreaseVerticalSpeed();
         }
-        else if (Input.GetAxisRaw("Vertical") == 0)
+        else if (this.verticalAxis == 0)
         {
             this.decreaseVerticalSpeed = true;
         }
         else
         {
-            if (Input.GetAxisRaw("Vertical") > 0)
+            if (this.verticalAxis > 0)
             {
                 GoUp();
             }
-            else if (Input.GetAxisRaw("Vertical") < 0)
+            else if (this.verticalAxis < 0)
             {
                 GoDown();
             }
@@ -64,17 +71,17 @@ public class Airplane : BaseAirplaneMechanics
         {
             DecreaseHorizontalSpeed();
         }
-        else if (Input.GetAxisRaw("Horizontal") == 0)
+        else if (this.horizontalAxis == 0)
         {
             this.decreaseHorizontalSpeed = true;
         }
         else
         {
-            if (Input.GetAxisRaw("Horizontal") < 0)
+            if (this.horizontalAxis < 0)
             {
                 GoLeft();
             }
-            else if (Input.GetAxisRaw("Horizontal") > 0)
+            else if (this.horizontalAxis > 0)
             {
                 GoRight();
             }
