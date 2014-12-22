@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     private const int Speed = 50;
 
     public int damage = 15;
+    public bool affectsScore;
 
     void Start()
     {
@@ -16,19 +17,30 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        ElementStats elementStats = collision.gameObject.GetComponent<ElementStats>();
-
-        if (elementStats != null)
-        {
-            HandleCollision(elementStats);
-        }
-
-        Destroy(gameObject);
+        HandleCollision(collision.gameObject);
     }
 
-    private void HandleCollision(ElementStats stats)
+    void OnTriggerEnter(Collider collider)
     {
-        stats.InflictDamage(this.damage);
-        // TODO: add a small explosion for the bullet dissapearance.
+        HandleCollision(collider.gameObject);
+    }
+
+    private void HandleCollision(GameObject hitTarget)
+    {
+        ElementStats elementStats = hitTarget.GetComponent<ElementStats>();
+        
+        if (elementStats != null && !elementStats.IsDead())
+        {
+            elementStats.InflictDamage(this.damage);
+            // TODO: add a small explosion for the bullet dissapearance.
+            
+            if (elementStats.IsDead())
+            {
+                AirplaneStats.AddGold(elementStats.gold);
+                AirplaneStats.AddScorePoints(elementStats.scorePoints);
+            }
+        }
+        
+        Destroy(gameObject);
     }
 }

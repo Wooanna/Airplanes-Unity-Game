@@ -3,7 +3,10 @@ using System.Collections;
 
 public class ElementStats : MonoBehaviour {
 
+    public int scorePoints;
+    public int gold;
 
+    private bool dead;
     public const int MaxArmor = 200;
 	public const int MaxHealth = 100;
 	public const int MinHealth = 0;
@@ -36,6 +39,11 @@ public class ElementStats : MonoBehaviour {
         }
     }
 
+    public bool IsDead()
+    {
+        return this.dead;
+    }
+
     public virtual void InflictDamage(int amount)
     {
         AdjustHealth(-(AdjustedDamage(amount)));
@@ -47,6 +55,7 @@ public class ElementStats : MonoBehaviour {
 
 		if (this.health <= 0)
         {
+            this.dead = true;
 			Die();
         }
     }
@@ -71,6 +80,6 @@ public class ElementStats : MonoBehaviour {
 
 	protected virtual void Die()
 	{
-		Destroy (gameObject);
+		Destroy (gameObject, 1);
 	}
 }

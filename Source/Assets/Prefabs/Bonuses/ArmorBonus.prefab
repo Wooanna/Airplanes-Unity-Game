@@ -83,6 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b6bdbb4654cd9439805fec157666c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorePoints: 0
+  gold: 1
   maxArmor: 1
   armor: 1
 --- !u!114 &11400002

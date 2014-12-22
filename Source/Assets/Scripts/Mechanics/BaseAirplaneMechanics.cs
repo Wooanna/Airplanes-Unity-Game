@@ -52,19 +52,22 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
     public void FixedUpdate()
     {
 		if (!rigidbody.useGravity)
-		{
-			this.currentAngle = 0;
-			this.tiltAngle = 0;
-			airplane.rotation = initialRotation;
+        {
+            this.currentAngle = 0;
+            this.tiltAngle = 0;
+            airplane.rotation = initialRotation;
 
-			movementDirection = transform.forward * ((constantSpeed + this.speedModifier));
-			ApplyDirectionalMovement();
+            movementDirection = transform.forward * ((constantSpeed + this.speedModifier));
+            ApplyDirectionalMovement();
 
-			rigidbody.velocity = movementDirection;
+            rigidbody.velocity = movementDirection;
 
-			UpdateAngle();
-			ApplyAngle();
-		}
+            UpdateAngle();
+            ApplyAngle();
+        } else
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
     }
 
 	protected abstract void ApplyAngle ();

@@ -499,6 +499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d022fb7a02f2f418668e2628137546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorePoints: 0
+  gold: 0
   maxArmor: 5
   armor: 5
   SmokeHealthBorder: 80

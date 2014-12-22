@@ -25,7 +25,7 @@ public class CollisionReaction : MonoBehaviour
         if (playerOnly && other.tag != "Player")
         {
             return;
-        }
+        }   
         
         ElementStats stats = other.GetComponent<ElementStats>();
         if (stats != null)

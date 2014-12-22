@@ -249,6 +249,7 @@ MonoBehaviour:
   damage: 80
   heal: 0
   armor: 0
+  playerOnly: 0
   random: 0
 --- !u!114 &11400006
 MonoBehaviour:
@@ -261,6 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b6bdbb4654cd9439805fec157666c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorePoints: 300
+  gold: 5
   maxArmor: 5
   armor: 5
 --- !u!114 &11400008
