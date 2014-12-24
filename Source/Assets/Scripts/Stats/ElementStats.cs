@@ -5,11 +5,12 @@ public class ElementStats : MonoBehaviour {
 
     public int scorePoints;
     public int gold;
-    public float flashTime = .01f;
+    float flashTime = .2f;
     float currentFlashTime;
+    bool isHurt;
 
     public Color hurtColor = new Color(1, 0, 0, .35f);
-    protected Color initialColor;
+    Color initialColor;
 
     private bool dead;
     public const int MaxArmor = 200;
@@ -22,7 +23,12 @@ public class ElementStats : MonoBehaviour {
     public int maxArmor = 5;
     public int armor = 5;
 
-    public void Awake()
+    void Awake()
+    {
+        Init();
+    }
+
+    protected virtual void Init()
     {
         modelRenderer = transform.FindChild("model").renderer;
         this.initialColor = modelRenderer.material.color;
@@ -30,11 +36,19 @@ public class ElementStats : MonoBehaviour {
 
     void Update()
     {
-        if (currentFlashTime > 0)
+        if (isHurt)
         {
-            modelRenderer.material.color = Color.Lerp(hurtColor, initialColor, 1 - (currentFlashTime / flashTime));
-
-            currentFlashTime -= Time.deltaTime;
+            if (currentFlashTime > 0)
+            {
+                modelRenderer.material.color = Color.Lerp(hurtColor, initialColor, 1 - (currentFlashTime / flashTime));
+                
+                currentFlashTime -= Time.deltaTime;
+            }
+            else
+            {
+                isHurt = false;
+                modelRenderer.material.color = initialColor;
+            }
         }
     }
 
@@ -99,6 +113,7 @@ public class ElementStats : MonoBehaviour {
 
         modelRenderer.material.color = this.hurtColor;
         currentFlashTime = flashTime;
+        isHurt = true;
     }
 
     private int AdjustedDamage(int amount)

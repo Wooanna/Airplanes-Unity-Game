@@ -3299,11 +3299,11 @@ GameObject:
   - 54: {fileID: 1362753001}
   - 114: {fileID: 1362753000}
   - 114: {fileID: 1362752999}
-  - 114: {fileID: 1362752998}
   - 65: {fileID: 1362752996}
   - 65: {fileID: 1362752995}
   - 82: {fileID: 1362752994}
   - 114: {fileID: 1362753004}
+  - 114: {fileID: 1362752997}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -3414,12 +3414,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.66999996, y: 1.17999995, z: 5.5}
   m_Center: {x: 0, y: .0306978226, z: -1.53693676}
---- !u!114 &1362752998
+--- !u!114 &1362752997
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11462650, guid: 54af1431ee838405680f8917776ec23e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1453623516}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1362752992}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -3428,8 +3427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePoints: 0
   gold: 0
-  flashTime: .5
-  hurtColor: {r: 1, g: 0, b: 0, a: .25}
+  hurtColor: {r: 1, g: 0, b: 0, a: .349999994}
   modelRenderer: {fileID: 0}
   maxArmor: 5
   armor: 5
@@ -3438,7 +3436,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1722830275}
   armourSlider: {fileID: 1239759281}
   scoreText: {fileID: 1451412166}
-  armourText: {fileID: 0}
+  armourText: {fileID: 312168982}
 --- !u!114 &1362752999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4020,7 +4018,12 @@ Prefab:
       propertyPath: armorText
       value: 
       objectReference: {fileID: 312168982}
-    m_RemovedComponents: []
+    - target: {fileID: 11462650, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: armourText
+      value: 
+      objectReference: {fileID: 312168982}
+    m_RemovedComponents:
+    - {fileID: 11462650, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
   m_IsPrefabParent: 0

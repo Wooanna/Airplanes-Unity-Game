@@ -9,12 +9,13 @@ public class BaseAirplaneStats : ElementStats {
     GameObject fireSystem;
     GameObject smokeSystem;
 
-	void Awake () {
-        base.Awake();
+    protected override void Init()
+    {
+        base.Init();
 
         this.fireSystem = transform.FindChild ("FireSystem").FindChild("Fire").gameObject;
         this.smokeSystem = transform.FindChild ("FireSystem").FindChild("Smoke").gameObject;
-	}
+    }
 	
     public override void Heal (int amount)
     {

@@ -9,8 +9,10 @@ public class AirplaneStats : BaseAirplaneStats {
     public Text scoreText;
     public Text armourText;
 
-    void Start()
+    protected override void Init()
     {
+        base.Init();
+
         this.armourText.text = armor.ToString();
     }
 
