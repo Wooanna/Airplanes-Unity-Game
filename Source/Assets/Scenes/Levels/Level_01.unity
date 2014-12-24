@@ -3540,7 +3540,6 @@ MonoBehaviour:
   scorePoints: 0
   gold: 0
   hurtColor: {r: 1, g: 0, b: 0, a: .349999994}
-  modelRenderer: {fileID: 0}
   maxArmor: 5
   armor: 5
   SmokeHealthBorder: 80
