@@ -7,6 +7,12 @@ public class AirplaneStats : BaseAirplaneStats {
     public Slider healthSlider;
     public Slider armourSlider;
     public Text scoreText;
+    public Text armourText;
+
+    void Start()
+    {
+        this.armourText.text = armor.ToString();
+    }
 
     public override void AddGold(int gold)
     {
