@@ -26,7 +26,7 @@ public class AirplaneStats : BaseAirplaneStats {
     protected override void OnArmourChanged()
     {
         this.armourSlider.value = armor / (float)maxArmor;
-        this.armourText.text = armor.ToString();
+        this.armourText.text = maxArmor.ToString();
     }
 
     public override void AddScore(int score)
