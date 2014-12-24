@@ -16,7 +16,7 @@ public class ElementStats : MonoBehaviour {
     public const int MaxArmor = 200;
 	public const int MaxHealth = 100;
 	public const int MinHealth = 0;
-    public Renderer modelRenderer;
+    Material modelMaterial;
 
 	protected int health = 100;
 
@@ -30,8 +30,8 @@ public class ElementStats : MonoBehaviour {
 
     protected virtual void Init()
     {
-        modelRenderer = transform.FindChild("model").renderer;
-        this.initialColor = modelRenderer.material.color;
+        modelMaterial = transform.FindChild("model").renderer.material;
+        this.initialColor = modelMaterial.color;
     }
 
     void Update()
@@ -40,14 +40,14 @@ public class ElementStats : MonoBehaviour {
         {
             if (currentFlashTime > 0)
             {
-                modelRenderer.material.color = Color.Lerp(hurtColor, initialColor, 1 - (currentFlashTime / flashTime));
+                modelMaterial.color = Color.Lerp(hurtColor, initialColor, 1 - (currentFlashTime / flashTime));
                 
                 currentFlashTime -= Time.deltaTime;
             }
             else
             {
                 isHurt = false;
-                modelRenderer.material.color = initialColor;
+                modelMaterial.color = initialColor;
             }
         }
     }
@@ -111,7 +111,7 @@ public class ElementStats : MonoBehaviour {
 			Die();
         }
 
-        modelRenderer.material.color = this.hurtColor;
+        modelMaterial.color = this.hurtColor;
         currentFlashTime = flashTime;
         isHurt = true;
     }
