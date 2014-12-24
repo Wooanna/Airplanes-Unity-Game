@@ -66,7 +66,7 @@ public class LevelGenerator : MonoBehaviour
     private void UpdateSpawnCoolDowns()
     {
         UpdateBonusSpawnCoolDown();
-        UpdateObstacleSpawnCoolDown();
+        //UpdateObstacleSpawnCoolDown();
         UpdateEnemySpawnCoolDown();
     }
 

@@ -5,6 +5,7 @@ using System.Collections;
 public class CollisionReaction : MonoBehaviour {
 
     ElementStats stats;
+    string otherTag;
 
 	// Use this for initialization
 	void Awake () {
@@ -13,7 +14,19 @@ public class CollisionReaction : MonoBehaviour {
 	
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obstacle")
+        HandleCollision(collision.gameObject);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        HandleCollision(other.gameObject);
+    }
+
+    void HandleCollision(GameObject other)
+    {
+        this.otherTag = other.tag;
+        
+        if (this.otherTag == "Obstacle" || this.otherTag == "Player" || this.otherTag == "Enemy")
         {
             stats.InflictDamage(int.MaxValue);
         }

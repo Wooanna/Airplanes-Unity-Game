@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
-  affectsScore: 0
+  affectsScore: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

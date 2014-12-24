@@ -39,6 +39,16 @@ public class ElementStats : MonoBehaviour {
         }
     }
 
+    public virtual void AddGold(int gold)
+    {
+        this.gold += gold;
+    }
+
+    public virtual void AddScore(int score)
+    {
+        this.scorePoints += score;
+    }
+
     public bool IsDead()
     {
         return this.dead;
@@ -72,7 +82,6 @@ public class ElementStats : MonoBehaviour {
 
 	protected virtual void AdjustHealth(int ammount)
 	{
-        Debug.Log(ammount);
 		this.health += ammount;
 		if (this.health > MaxHealth)
 		{

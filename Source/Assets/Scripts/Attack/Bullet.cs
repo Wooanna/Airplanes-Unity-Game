@@ -4,6 +4,19 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
+    private static ElementStats playerStats;
+
+    private ElementStats PlayerStats
+    {
+        get{
+            if (playerStats == null) {
+                playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<ElementStats>();
+            }
+
+            return playerStats;
+        }
+    }
+
     private const int Speed = 150;
     private Transform bullet;
     public int damage = 15;
@@ -39,8 +52,11 @@ public class Bullet : MonoBehaviour
             elementStats.InflictDamage(this.damage);
             // TODO: add a small explosion for the bullet dissapearance.
             
-            if (elementStats.IsDead())
+            if (this.affectsScore && elementStats.IsDead())
             {
+                PlayerStats.AddGold(elementStats.gold);
+                PlayerStats.AddScore(elementStats.scorePoints);
+                Debug.Log(PlayerStats.gameObject.name);
                 //AirplaneStats.AddGold(elementStats.gold);
                 //AirplaneStats.AddScorePoints(elementStats.scorePoints);
             }

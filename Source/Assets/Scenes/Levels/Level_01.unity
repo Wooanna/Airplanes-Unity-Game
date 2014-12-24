@@ -1501,13 +1501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6033c45dc75f3c41af6f23fb43c31db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles:
-  - {fileID: 100000, guid: e72f032de2da61d4a914be8379c1104e, type: 2}
-  - {fileID: 100000, guid: 3d4a696c378638049bf3a56b715a2049, type: 2}
-  - {fileID: 100000, guid: 1fb36835ced4088448c36529be38a5c9, type: 2}
-  - {fileID: 100000, guid: 37aedbaaffdc413459aac1f80c04f137, type: 2}
-  - {fileID: 100000, guid: 19c578fbbd7cec44692ff1b3f6a51801, type: 2}
-  - {fileID: 100006, guid: 847f4054ab33e6049ac2f8d888f62468, type: 2}
+  obstacles: []
   enemies:
   - {fileID: 100000, guid: 942b51baff8c2b44399af788d6265641, type: 2}
   bonuses:
@@ -1800,6 +1794,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11462648, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: obstacles.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 462660, guid: 54af1431ee838405680f8917776ec23e, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1840,6 +1838,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11462650, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1451412166}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
@@ -2980,7 +2982,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3423,7 +3425,7 @@ MonoBehaviour:
   FireHealthBorder: 40
   healthSlider: {fileID: 1722830275}
   armorSlider: {fileID: 0}
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1451412166}
 --- !u!114 &1362752999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3855,7 +3857,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 0
 --- !u!222 &1451412167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4677,7 +4679,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:

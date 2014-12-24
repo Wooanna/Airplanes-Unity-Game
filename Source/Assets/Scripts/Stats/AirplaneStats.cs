@@ -8,6 +8,21 @@ public class AirplaneStats : BaseAirplaneStats {
     public Slider armorSlider;
     public Text scoreText;
 
+    public override void AddGold(int gold)
+    {
+        base.AddGold(gold);
+
+        // Update UI
+    }
+
+    public override void AddScore(int score)
+    {
+        base.AddScore(score);
+
+        // Update UI
+        this.scoreText.text = this.scorePoints.ToString();
+    }
+
     protected override void AdjustHealth(int ammount)
     {
         base.AdjustHealth(ammount);
