@@ -3540,8 +3540,8 @@ MonoBehaviour:
   scorePoints: 0
   gold: 0
   hurtColor: {r: 1, g: 0, b: 0, a: .349999994}
-  maxArmor: 5
-  armor: 5
+  maxArmor: 200
+  armor: 200
   SmokeHealthBorder: 80
   FireHealthBorder: 40
   healthSlider: {fileID: 1722830275}
@@ -5614,6 +5614,14 @@ Prefab:
       propertyPath: armourText
       value: 
       objectReference: {fileID: 312168982}
+    - target: {fileID: 11439898, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: maxArmor
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439898, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: armor
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}

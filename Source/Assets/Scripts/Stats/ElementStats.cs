@@ -77,7 +77,11 @@ public class ElementStats : MonoBehaviour {
         this.armor += amount;
         if (armor > maxArmor)
         {
-            armor = maxArmor;
+            maxArmor = armor;
+            if (maxArmor > MaxArmor) {
+                maxArmor = MaxArmor;
+                armor = maxArmor;
+            }
         }
 
         OnArmourChanged();
@@ -98,6 +102,7 @@ public class ElementStats : MonoBehaviour {
         return this.dead;
     }
 
+    int adjustedDamage;
     public virtual void InflictDamage(int amount)
     {
         if (this.dead)
@@ -105,8 +110,10 @@ public class ElementStats : MonoBehaviour {
             return;
         }
 
-        AdjustHealth(-(AdjustedDamage(amount)));
-        armor -= amount >> 1;
+        adjustedDamage = -(AdjustedDamage(amount));
+        AdjustHealth(adjustedDamage);
+
+        armor += adjustedDamage / 3;
         if (armor < 0)
         {
             armor = 0;
@@ -116,18 +123,20 @@ public class ElementStats : MonoBehaviour {
         {
             this.dead = true;
             this.health = 0;
-			Die();
+            Die();
         }
-
-        OnArmourChanged();
-        modelMaterial.color = this.hurtColor;
-        currentFlashTime = flashTime;
-        isHurt = true;
+        else
+        {
+            OnArmourChanged();
+            modelMaterial.color = this.hurtColor;
+            currentFlashTime = flashTime;
+            isHurt = true;
+        }
     }
 
     private int AdjustedDamage(int amount)
     {
-        return (int)(amount * (1 - (armor / MaxArmor)));
+        return (int)(amount * (1 - (armor / (float)MaxArmor)));
     }
 
 	protected virtual void AdjustHealth(int ammount)
