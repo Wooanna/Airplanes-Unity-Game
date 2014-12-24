@@ -512,6 +512,10 @@ Prefab:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 94bfadc3cf9d2dc4381208ea7dcde9e2, type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1722830275}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 94bfadc3cf9d2dc4381208ea7dcde9e2, type: 2}
     - {fileID: 3300000, guid: 94bfadc3cf9d2dc4381208ea7dcde9e2, type: 2}
@@ -3480,9 +3484,7 @@ MonoBehaviour:
   armor: 5
   SmokeHealthBorder: 80
   FireHealthBorder: 40
-  fireSystem: {fileID: 0}
-  smokeSystem: {fileID: 0}
-  healthSlider: {fileID: 0}
+  healthSlider: {fileID: 1722830275}
   armorSlider: {fileID: 0}
   scoreText: {fileID: 0}
 --- !u!114 &1362752999
