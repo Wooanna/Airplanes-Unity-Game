@@ -64,6 +64,12 @@ public class ElementStats : MonoBehaviour {
         {
             maxArmor = MaxArmor;
         }
+
+        OnArmourChanged();
+    }
+
+    protected virtual void OnArmourChanged()
+    {
     }
 
     public void RepairArmor(int amount)
@@ -73,6 +79,8 @@ public class ElementStats : MonoBehaviour {
         {
             armor = maxArmor;
         }
+
+        OnArmourChanged();
     }
 
     public virtual void AddGold(int gold)
@@ -111,6 +119,7 @@ public class ElementStats : MonoBehaviour {
 			Die();
         }
 
+        OnArmourChanged();
         modelMaterial.color = this.hurtColor;
         currentFlashTime = flashTime;
         isHurt = true;

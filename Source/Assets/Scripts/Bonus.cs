@@ -59,5 +59,7 @@ public class Bonus : MonoBehaviour
                 stats.InflictDamage(this.damage);
             }
         }
+
+        gameObject.SetActive(false);
     }
 }

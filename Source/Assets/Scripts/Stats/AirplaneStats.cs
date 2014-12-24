@@ -23,6 +23,12 @@ public class AirplaneStats : BaseAirplaneStats {
         // Update UI
     }
 
+    protected override void OnArmourChanged()
+    {
+        this.armourSlider.value = armor / (float)maxArmor;
+        this.armourText.text = armor.ToString();
+    }
+
     public override void AddScore(int score)
     {
         base.AddScore(score);
@@ -34,8 +40,6 @@ public class AirplaneStats : BaseAirplaneStats {
     public override void InflictDamage(int amount)
     {
         base.InflictDamage(amount);
-
-        this.armourSlider.value = armor / (float)maxArmor;
     }
 
     protected override void AdjustHealth(int ammount)
