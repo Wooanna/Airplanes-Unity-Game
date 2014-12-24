@@ -572,18 +572,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162652}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6033c45dc75f3c41af6f23fb43c31db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles:
-  - {fileID: 100000, guid: e72f032de2da61d4a914be8379c1104e, type: 2}
-  - {fileID: 100000, guid: 3d4a696c378638049bf3a56b715a2049, type: 2}
-  - {fileID: 100000, guid: 1fb36835ced4088448c36529be38a5c9, type: 2}
-  - {fileID: 100000, guid: 37aedbaaffdc413459aac1f80c04f137, type: 2}
-  - {fileID: 100000, guid: 19c578fbbd7cec44692ff1b3f6a51801, type: 2}
-  - {fileID: 100006, guid: 847f4054ab33e6049ac2f8d888f62468, type: 2}
+  obstacles: []
   enemies:
   - {fileID: 100000, guid: 942b51baff8c2b44399af788d6265641, type: 2}
   bonuses:
@@ -614,7 +608,7 @@ MonoBehaviour:
   SmokeHealthBorder: 80
   FireHealthBorder: 40
   healthSlider: {fileID: 0}
-  armorSlider: {fileID: 0}
+  armourSlider: {fileID: 0}
   scoreText: {fileID: 0}
 --- !u!114 &11462652
 MonoBehaviour:

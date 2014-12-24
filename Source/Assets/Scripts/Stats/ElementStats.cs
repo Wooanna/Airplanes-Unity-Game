@@ -73,6 +73,8 @@ public class ElementStats : MonoBehaviour {
             this.health = 0;
 			Die();
         }
+
+        Debug.Log("armor " + armor);
     }
 
     private int AdjustedDamage(int amount)

@@ -56,9 +56,6 @@ public class Bullet : MonoBehaviour
             {
                 PlayerStats.AddGold(elementStats.gold);
                 PlayerStats.AddScore(elementStats.scorePoints);
-                Debug.Log(PlayerStats.gameObject.name);
-                //AirplaneStats.AddGold(elementStats.gold);
-                //AirplaneStats.AddScorePoints(elementStats.scorePoints);
             }
         }
         
