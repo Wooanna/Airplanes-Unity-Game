@@ -10,10 +10,9 @@ GameObject:
   - 4: {fileID: 484908}
   - 33: {fileID: 3384910}
   - 65: {fileID: 6584910}
-  - 114: {fileID: 11484912}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -28,10 +27,9 @@ GameObject:
   - 4: {fileID: 484910}
   - 33: {fileID: 3384912}
   - 65: {fileID: 6584912}
-  - 114: {fileID: 11484910}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -46,10 +44,9 @@ GameObject:
   - 4: {fileID: 484912}
   - 33: {fileID: 3384914}
   - 65: {fileID: 6584914}
-  - 114: {fileID: 11484914}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -64,10 +61,9 @@ GameObject:
   - 4: {fileID: 484914}
   - 33: {fileID: 3384916}
   - 65: {fileID: 6584916}
-  - 114: {fileID: 11484916}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -284,70 +280,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11484910
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
---- !u!114 &11484912
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
---- !u!114 &11484914
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
---- !u!114 &11484916
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

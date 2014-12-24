@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CollisionReaction : MonoBehaviour
+public class Bonus : MonoBehaviour
 {
-
     public int damage;
     public int heal;
     public int armor;
@@ -47,13 +46,6 @@ public class CollisionReaction : MonoBehaviour
                 }
             }
             
-            CollisionReaction otherCollision = other.GetComponent<CollisionReaction>();
-            int collisionDamage = 0;
-            if (otherCollision != null)
-            {
-                collisionDamage = otherCollision.damage;
-            }
-            
             if (this.armor > 0)
             {
                 stats.RepairArmor(this.armor);
@@ -65,15 +57,6 @@ public class CollisionReaction : MonoBehaviour
             if (this.damage > 0)
             {
                 stats.InflictDamage(this.damage);
-            }
-            
-            if (collisionDamage > 0)
-            {
-                ElementStats selfStats = GetComponent<ElementStats>();
-                if (selfStats != null)
-                {
-                    selfStats.InflictDamage(damage);
-                }
             }
         }
     }

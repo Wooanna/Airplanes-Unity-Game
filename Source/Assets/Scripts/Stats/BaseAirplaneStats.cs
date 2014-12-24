@@ -6,8 +6,8 @@ public class BaseAirplaneStats : ElementStats {
     public int SmokeHealthBorder = 80;
     public int FireHealthBorder = 40;
     
-    public GameObject fireSystem;
-    public GameObject smokeSystem;
+    GameObject fireSystem;
+    GameObject smokeSystem;
 
 	void Awake () {
         this.fireSystem = transform.FindChild ("FireSystem").FindChild("Fire").gameObject;

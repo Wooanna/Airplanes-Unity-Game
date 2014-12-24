@@ -25,10 +25,9 @@ GameObject:
   - 4: {fileID: 405722}
   - 33: {fileID: 3305720}
   - 65: {fileID: 6505720}
-  - 114: {fileID: 11405722}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -43,10 +42,9 @@ GameObject:
   - 4: {fileID: 405724}
   - 33: {fileID: 3305722}
   - 65: {fileID: 6505722}
-  - 114: {fileID: 11405724}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -61,10 +59,9 @@ GameObject:
   - 4: {fileID: 405726}
   - 33: {fileID: 3305724}
   - 65: {fileID: 6505724}
-  - 114: {fileID: 11405720}
   m_Layer: 0
   m_Name: CollisionCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -234,54 +231,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11405720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 105726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
---- !u!114 &11405722
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 105722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
---- !u!114 &11405724
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 105724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  playerOnly: 0
-  random: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

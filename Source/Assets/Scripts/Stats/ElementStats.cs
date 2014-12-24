@@ -70,7 +70,7 @@ public class ElementStats : MonoBehaviour {
         return (int)(amount * (1 - (armor / MaxArmor)));
     }
 
-	private void AdjustHealth(int ammount)
+	protected virtual void AdjustHealth(int ammount)
 	{
 		this.health += ammount;
 		if (this.health > MaxHealth)

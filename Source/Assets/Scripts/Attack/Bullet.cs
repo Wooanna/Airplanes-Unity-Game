@@ -41,8 +41,8 @@ public class Bullet : MonoBehaviour
             
             if (elementStats.IsDead())
             {
-                AirplaneStats.AddGold(elementStats.gold);
-                AirplaneStats.AddScorePoints(elementStats.scorePoints);
+                //AirplaneStats.AddGold(elementStats.gold);
+                //AirplaneStats.AddScorePoints(elementStats.scorePoints);
             }
         }
         
