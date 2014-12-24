@@ -4,15 +4,20 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
-    private const int Speed = 50;
-
+    private const int Speed = 150;
+    private Transform bullet;
     public int damage = 15;
     public bool affectsScore;
 
-    void Start()
+    void Awake()
     {
-        rigidbody.AddForce(transform.forward * Speed, ForceMode.VelocityChange);
+        this.bullet = gameObject.transform;
         Destroy(gameObject, 2);
+    }
+
+    void FixedUpdate()
+    {
+        this.bullet.Translate(this.bullet.forward * Time.deltaTime * Speed);
     }
 
     void OnCollisionEnter(Collision collision)

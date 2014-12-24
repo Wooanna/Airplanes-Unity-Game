@@ -46,6 +46,10 @@ public class ElementStats : MonoBehaviour {
 
     public virtual void InflictDamage(int amount)
     {
+        if (this.dead)
+        {
+            return;
+        }
         AdjustHealth(-(AdjustedDamage(amount)));
         armor -= amount >> 3;
         if (armor < 0)
@@ -56,6 +60,7 @@ public class ElementStats : MonoBehaviour {
 		if (this.health <= 0)
         {
             this.dead = true;
+            this.health = 0;
 			Die();
         }
     }

@@ -23,11 +23,6 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
     protected float currentHorizontalSpeed;
     protected bool decreaseVerticalSpeed;
     protected bool decreaseHorizontalSpeed;
-
-    protected int upperBorder = 39;
-    protected int lowerBorder = 1;
-    protected int leftBorder = -54;
-    protected int rightBorder = 54;
     
     protected int currentAngle;
     protected int tiltAngle;
@@ -49,7 +44,7 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
     protected Vector3 movementDirection;
 
-    public void FixedUpdate()
+    void FixedUpdate()
     {
 		if (!rigidbody.useGravity)
         {
@@ -173,12 +168,6 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
     protected void GoDown() 
     {
-        if (airplane.position.y < lowerBorder)
-        {
-            decreaseVerticalSpeed = true;
-        }
-        else
-        {
             currentVerticalSpeed += SpeedChangeStep * Time.deltaTime;
             if (currentVerticalSpeed > maxSpeed)
             {
@@ -187,17 +176,10 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
             this.direction &= ~DirectionUp;
             this.direction |= DirectionDown;
-        }
     }
 
     protected void GoUp()
     {
-        if (airplane.position.y > upperBorder)
-        {
-            decreaseVerticalSpeed = true;
-        }
-        else
-        {
             currentVerticalSpeed += SpeedChangeStep * Time.deltaTime;
             if (currentVerticalSpeed > maxSpeed)
             {
@@ -206,17 +188,10 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
             this.direction &= ~DirectionDown;
             this.direction |= DirectionUp;
-        }
     }
 
     protected void GoLeft()
     {
-        if (airplane.position.x < leftBorder)
-        {
-            decreaseHorizontalSpeed = true;
-        }
-        else 
-        {
             currentHorizontalSpeed += SpeedChangeStep * Time.deltaTime;
             if (currentHorizontalSpeed > maxSpeed)
             {
@@ -225,17 +200,10 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
             this.direction |= DirectionLeft;
             this.direction &= ~DirectionRight;
-        }
     }
 
     protected void GoRight() 
     {
-        if (airplane.position.x > rightBorder)
-        {
-            decreaseHorizontalSpeed = true;
-        }
-        else
-        {
             currentHorizontalSpeed += SpeedChangeStep * Time.deltaTime;
             if (currentHorizontalSpeed > maxSpeed)
             {
@@ -244,7 +212,6 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
             this.direction |= DirectionRight;
             this.direction &= ~DirectionLeft;
-        }
     }
 
     protected void DecreaseVerticalSpeed()

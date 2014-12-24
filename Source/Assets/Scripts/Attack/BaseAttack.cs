@@ -30,6 +30,7 @@ public class BaseAttack : MonoBehaviour {
             Instantiate(bullet, gun.position, gun.rotation);
         }
 
+        this.audio.Stop();
         this.audio.PlayOneShot(this.shotSound);
     }
 

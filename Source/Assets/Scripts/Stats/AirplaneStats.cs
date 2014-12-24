@@ -23,4 +23,11 @@ public class AirplaneStats : BaseAirplaneStats {
         GUI.Box(new Rect(Screen.width >> 1, 10, 50, 25), playerScore.ToString());
         GUI.Box(new Rect(Screen.width - 50, 10, 50, 25), playerGold.ToString());
     }
+
+    protected override void Die()
+    {
+        base.Die();
+
+        transform.FindChild("CamPos").gameObject.transform.parent = null;
+    }
 }
