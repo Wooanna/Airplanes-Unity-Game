@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        this.bullet.Translate(this.bullet.forward * Time.deltaTime * Speed);
+        this.bullet.Translate(this.bullet.forward * Time.deltaTime * Speed, Space.World);
     }
 
     void OnCollisionEnter(Collision collision)

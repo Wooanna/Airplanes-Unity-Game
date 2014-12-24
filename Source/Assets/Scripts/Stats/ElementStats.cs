@@ -72,6 +72,7 @@ public class ElementStats : MonoBehaviour {
 
 	protected virtual void AdjustHealth(int ammount)
 	{
+        Debug.Log(ammount);
 		this.health += ammount;
 		if (this.health > MaxHealth)
 		{

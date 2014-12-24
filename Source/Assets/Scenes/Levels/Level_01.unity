@@ -1496,7 +1496,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 730588393}
   m_GameObject: {fileID: 609236079}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6033c45dc75f3c41af6f23fb43c31db, type: 3}
   m_Name: 
@@ -1836,6 +1836,10 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1722830275}
+    - target: {fileID: 11462648, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
