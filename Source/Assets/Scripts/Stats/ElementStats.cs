@@ -6,6 +6,9 @@ public class ElementStats : MonoBehaviour {
     public int scorePoints;
     public int gold;
 
+    public Color hurtColor = new Color(1, 0, 0, .75f);
+    protected Color initialColor;
+
     private bool dead;
     public const int MaxArmor = 200;
 	public const int MaxHealth = 100;
@@ -15,6 +18,19 @@ public class ElementStats : MonoBehaviour {
 
     public int maxArmor = 5;
     public int armor = 5;
+
+    void Awake()
+    {
+        this.initialColor = renderer.material.color;
+    }
+
+    void Update()
+    {
+        if (true)
+        {
+
+        }
+    }
 
     public virtual void Heal(int amount)
     {
@@ -60,6 +76,7 @@ public class ElementStats : MonoBehaviour {
         {
             return;
         }
+
         AdjustHealth(-(AdjustedDamage(amount)));
         armor -= amount >> 3;
         if (armor < 0)
@@ -74,7 +91,7 @@ public class ElementStats : MonoBehaviour {
 			Die();
         }
 
-        Debug.Log("armor " + armor);
+        transform.FindChild("model").renderer.material.color = this.hurtColor;
     }
 
     private int AdjustedDamage(int amount)
@@ -97,6 +114,6 @@ public class ElementStats : MonoBehaviour {
 
 	protected virtual void Die()
 	{
-		Destroy (gameObject, 1);
+		gameObject.SetActive(false);
 	}
 }
