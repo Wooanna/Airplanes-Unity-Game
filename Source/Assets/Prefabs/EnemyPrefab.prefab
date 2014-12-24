@@ -115,7 +115,7 @@ GameObject:
   - 33: {fileID: 3314630}
   - 23: {fileID: 2314630}
   m_Layer: 0
-  m_Name: plane
+  m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,6 +552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePoints: 300
   gold: 5
+  flashTime: .5
+  hurtColor: {r: 1, g: 0, b: 0, a: .25}
   maxArmor: 5
   armor: 5
   SmokeHealthBorder: 80

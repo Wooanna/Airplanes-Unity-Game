@@ -10,6 +10,8 @@ public class BaseAirplaneStats : ElementStats {
     GameObject smokeSystem;
 
 	void Awake () {
+        base.Awake();
+
         this.fireSystem = transform.FindChild ("FireSystem").FindChild("Fire").gameObject;
         this.smokeSystem = transform.FindChild ("FireSystem").FindChild("Smoke").gameObject;
 	}

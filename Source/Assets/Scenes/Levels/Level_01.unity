@@ -1056,7 +1056,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1362752993}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &479592663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,11 +2809,11 @@ Transform:
   m_PrefabInternal: {fileID: 1453623516}
   m_GameObject: {fileID: 1190487438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.51093602, y: -.30181551, z: 2.69403362}
+  m_LocalPosition: {x: -1.51093602, y: -.301815033, z: 2.69403362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1362752993}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1209006084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,8 +3253,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1007498077}
-  - {fileID: 478946787}
   - {fileID: 1190487439}
+  - {fileID: 478946787}
   - {fileID: 609236080}
   - {fileID: 1691498973}
   - {fileID: 1612696017}
@@ -3359,6 +3359,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePoints: 0
   gold: 0
+  flashTime: .5
+  hurtColor: {r: 1, g: 0, b: 0, a: .25}
+  modelRenderer: {fileID: 0}
   maxArmor: 5
   armor: 5
   SmokeHealthBorder: 80
@@ -3396,8 +3399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe949f562da3ad4eb61829d744362ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constantSpeed: 20
-  maxSpeed: 20
+  constantSpeed: 10
+  maxSpeed: 10
 --- !u!54 &1362753001
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3899,6 +3902,50 @@ Prefab:
       propertyPath: armourSlider
       value: 
       objectReference: {fileID: 1239759281}
+    - target: {fileID: 162662, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_Name
+      value: model
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462650, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 462656, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -.301815033
+      objectReference: {fileID: 0}
+    - target: {fileID: 462662, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462664, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.53692114
+      objectReference: {fileID: 0}
+    - target: {fileID: 462664, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.53692102
+      objectReference: {fileID: 0}
+    - target: {fileID: 462648, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 462654, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462656, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462654, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: constantSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462654, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
@@ -4287,7 +4334,7 @@ GameObject:
   - 33: {fileID: 1612696019}
   - 23: {fileID: 1612696018}
   m_Layer: 0
-  m_Name: plane
+  m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4300,7 +4347,7 @@ Transform:
   m_PrefabInternal: {fileID: 1453623516}
   m_GameObject: {fileID: 1612696016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1362752993}
@@ -4545,7 +4592,7 @@ Transform:
   m_GameObject: {fileID: 1691498972}
   m_LocalRotation: {x: .095759958, y: 0, z: 0, w: .995404541}
   m_LocalPosition: {x: 0, y: 4.46371555, z: -9.51403809}
-  m_LocalScale: {x: 1, y: 1.53692102, z: 1.53692091}
+  m_LocalScale: {x: 1, y: 1.53692114, z: 1.53692102}
   m_Children: []
   m_Father: {fileID: 1362752993}
   m_RootOrder: 4
