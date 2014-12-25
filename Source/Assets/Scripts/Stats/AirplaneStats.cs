@@ -34,7 +34,7 @@ public class AirplaneStats : BaseAirplaneStats {
 
     protected override void OnFuelChanged() {
         Debug.Log("On fuel changed");
-        this.fuelText.text = this.fuel.ToString();
+        this.fuelText.text = fuel.ToString();
     }
 
     public override void AddScore(int score)
