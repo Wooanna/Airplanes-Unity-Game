@@ -27,12 +27,13 @@ public class AirplaneStats : BaseAirplaneStats {
 
     protected override void OnArmourChanged()
     {
+        Debug.Log("On armor changed");
         this.armourSlider.value = armor / (float)maxArmor;
         this.armourText.text = maxArmor.ToString();
     }
 
     protected override void OnFuelChanged() {
-        
+        Debug.Log("On fuel changed");
         this.fuelText.text = this.fuel.ToString();
     }
 

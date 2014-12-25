@@ -8,7 +8,7 @@ public class ElementStats : MonoBehaviour {
     public int fuel = 100;
     float flashTime = .2f;
     float currentFlashTime;
-    float fuelUsageTime = 10;
+    float fuelUsageTime = 1;
     bool isHurt;
 
     public Color hurtColor = new Color(1, 0, 0, .35f);

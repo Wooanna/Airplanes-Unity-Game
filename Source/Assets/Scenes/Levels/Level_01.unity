@@ -356,6 +356,7 @@ RectTransform:
   - {fileID: 592822238}
   - {fileID: 345738685}
   - {fileID: 971070674}
+  - {fileID: 1060288782}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
@@ -1098,6 +1099,7 @@ MonoBehaviour:
   damage: 10000
   heal: 0
   armor: 0
+  fuel: 0
   playerOnly: 0
   random: 0
 --- !u!1 &404980049
@@ -2239,7 +2241,7 @@ Transform:
   m_PrefabParentObject: {fileID: 439984, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_PrefabInternal: {fileID: 1631487437}
   m_GameObject: {fileID: 847602128}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: .707106888, w: .707106769}
   m_LocalPosition: {x: 0, y: 18.9500008, z: 0}
   m_LocalScale: {x: 1.87326109, y: 18.1739693, z: 1.57916164}
   m_Children: []
@@ -2585,6 +2587,72 @@ Transform:
   - {fileID: 1340976401}
   m_Father: {fileID: 1362752993}
   m_RootOrder: 0
+--- !u!1 &1060288780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1060288782}
+  - 222: {fileID: 1060288783}
+  - 114: {fileID: 1060288781}
+  m_Layer: 5
+  m_Name: Fuel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1060288781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1060288780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0
+--- !u!224 &1060288782
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1060288780}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 107623290}
+  m_RootOrder: 3
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -230, y: 70}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: .5, y: .5}
+--- !u!222 &1060288783
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1060288780}
 --- !u!1 &1064253870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,7 +2956,7 @@ Transform:
   m_PrefabParentObject: {fileID: 439984, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_PrefabInternal: {fileID: 1251973438}
   m_GameObject: {fileID: 1150254474}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: .707106888, w: .707106769}
   m_LocalPosition: {x: 0, y: 18.9500008, z: 0}
   m_LocalScale: {x: 1.87326109, y: 18.1739693, z: 1.57916164}
   m_Children: []
@@ -3539,6 +3607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePoints: 0
   gold: 0
+  fuel: 100
   hurtColor: {r: 1, g: 0, b: 0, a: .349999994}
   maxArmor: 200
   armor: 200
@@ -3548,6 +3617,7 @@ MonoBehaviour:
   armourSlider: {fileID: 1239759281}
   scoreText: {fileID: 1451412166}
   armourText: {fileID: 312168982}
+  fuelText: {fileID: 1060288781}
 --- !u!114 &1362752999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3921,6 +3991,7 @@ MonoBehaviour:
   damage: 10000
   heal: 0
   armor: 0
+  fuel: 0
   playerOnly: 0
   random: 0
 --- !u!1 &1451412164
@@ -4173,7 +4244,7 @@ Transform:
   m_PrefabParentObject: {fileID: 405722, guid: 4df4d9e65e6164f39af726b2f45992ec, type: 2}
   m_PrefabInternal: {fileID: 1637114308}
   m_GameObject: {fileID: 1527147315}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: .707106888, w: .707106769}
   m_LocalPosition: {x: -12, y: 18.1000004, z: 4}
   m_LocalScale: {x: 2.12765026, y: 9.77989197, z: 2.60214686}
   m_Children: []
@@ -5089,6 +5160,7 @@ MonoBehaviour:
   damage: 10000
   heal: 0
   armor: 0
+  fuel: 0
   playerOnly: 0
   random: 0
 --- !u!1 &1886393414
@@ -5387,7 +5459,7 @@ Transform:
   m_PrefabParentObject: {fileID: 439984, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_PrefabInternal: {fileID: 831463908}
   m_GameObject: {fileID: 1973406049}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: .707106888, w: .707106769}
   m_LocalPosition: {x: 0, y: 18.9500008, z: 0}
   m_LocalScale: {x: 1.87326109, y: 18.1739693, z: 1.57916164}
   m_Children: []
@@ -5622,6 +5694,10 @@ Prefab:
       propertyPath: armor
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 11439898, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: fuelText
+      value: 
+      objectReference: {fileID: 1060288781}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
