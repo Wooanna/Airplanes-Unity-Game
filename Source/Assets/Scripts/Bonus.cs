@@ -6,6 +6,7 @@ public class Bonus : MonoBehaviour
     public int damage;
     public int heal;
     public int armor;
+    public int fuel;
     public bool playerOnly;
     public bool random;
 
@@ -24,8 +25,8 @@ public class Bonus : MonoBehaviour
         if (playerOnly && other.tag != "Player")
         {
             return;
-        }   
-        
+        }
+
         ElementStats stats = other.GetComponent<ElementStats>();
         if (stats != null)
         {
@@ -39,13 +40,13 @@ public class Bonus : MonoBehaviour
                 {
                     armor = 0;
                 }
-                
+
                 if (damage > 0 || Random.Range(0, 101) < 10)
                 {
                     this.heal = 0;
                 }
             }
-            
+
             if (this.armor > 0)
             {
                 stats.RepairArmor(this.armor);
@@ -58,7 +59,17 @@ public class Bonus : MonoBehaviour
             {
                 stats.InflictDamage(this.damage);
             }
+            if (this.fuel > 0) 
+            {
+                stats.AdjustFuel(this.fuel);
+            }
         }
+
+
+
+
+
+
 
         gameObject.SetActive(false);
     }

@@ -8,12 +8,14 @@ public class AirplaneStats : BaseAirplaneStats {
     public Slider armourSlider;
     public Text scoreText;
     public Text armourText;
+    public Text fuelText;
 
     protected override void Init()
     {
         base.Init();
 
         this.armourText.text = armor.ToString();
+        this.fuelText.text = fuel.ToString();
     }
 
     public override void AddGold(int gold)
@@ -27,6 +29,11 @@ public class AirplaneStats : BaseAirplaneStats {
     {
         this.armourSlider.value = armor / (float)maxArmor;
         this.armourText.text = maxArmor.ToString();
+    }
+
+    protected override void OnFuelChanged() {
+        
+        this.fuelText.text = this.fuel.ToString();
     }
 
     public override void AddScore(int score)
