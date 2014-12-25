@@ -185,7 +185,7 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
             {
                 currentVerticalSpeed = maxSpeed;
             }
-
+            
             this.direction &= ~DirectionDown;
             this.direction |= DirectionUp;
     }
@@ -197,7 +197,7 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
             {
                 currentHorizontalSpeed = maxSpeed;
             }
-
+            
             this.direction |= DirectionLeft;
             this.direction &= ~DirectionRight;
     }
@@ -209,7 +209,7 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
             {
                 currentHorizontalSpeed = maxSpeed;
             }
-
+            
             this.direction |= DirectionRight;
             this.direction &= ~DirectionLeft;
     }
