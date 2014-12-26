@@ -5,9 +5,10 @@ public class AirplaneAttack : BaseAttack
 {
     void Update()
     {
-        if (CanShoot() && Input.GetButton("Fire1"))
+        if (CanShoot() && Input.GetButton("Fire1") && (bulletsLoaded > 0))
         {
             Fire();
+            bulletsLoaded--;
             Reload();
         }
     }

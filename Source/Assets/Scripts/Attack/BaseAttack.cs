@@ -12,10 +12,13 @@ public class BaseAttack : MonoBehaviour {
 
     public float reloadTime = .5f;
     protected float nextFireTime;
+    public int bulletsLoaded;
+
 
     void Awake()
     {
         this.stats = GetComponent<ElementStats>();
+        this.bulletsLoaded = 50;
     }
 
     protected void Reload()
