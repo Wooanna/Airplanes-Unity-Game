@@ -48,5 +48,6 @@ public class BaseAirplaneStats : ElementStats {
     protected override void Die()
     {
         rigidbody.useGravity = true;
+        rigidbody.constraints = RigidbodyConstraints.None;
     }
 }

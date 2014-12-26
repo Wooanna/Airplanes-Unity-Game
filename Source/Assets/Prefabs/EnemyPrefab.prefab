@@ -11,11 +11,11 @@ GameObject:
   - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   - 82: {fileID: 8270142}
   - 65: {fileID: 6560666}
   - 114: {fileID: 11443716}
   - 114: {fileID: 11489506}
+  - 114: {fileID: 11489648}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -526,19 +526,7 @@ MonoBehaviour:
   bullet: {fileID: 100000, guid: 7907a409fa0d69b49947b483ab975a0f, type: 2}
   shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
   reloadTime: .5
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b3a35b018dac9c44ac998f17f8f9a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  constantSpeed: 5
-  maxSpeed: 5
+  bulletsLoaded: 0
 --- !u!114 &11443716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -552,7 +540,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePoints: 300
   gold: 5
-  flashTime: .5
   hurtColor: {r: 1, g: 0, b: 0, a: .25}
   maxArmor: 5
   armor: 5
@@ -569,6 +556,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895d5105f9c64b48b84488955e9de53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11489648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3a35b018dac9c44ac998f17f8f9a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputGravity: 2
+  inputSensitivity: 2
+  speed: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
