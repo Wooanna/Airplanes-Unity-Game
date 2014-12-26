@@ -5,12 +5,9 @@ public class ElementStats : MonoBehaviour {
 
     public int scorePoints;
     public int gold;
-    public int fuel = 100;
     float flashTime = .2f;
     float currentFlashTime;
-    float fuelUsageTime = 1f;
     bool isHurt;
-    bool isOutOfFuel;
 
     public Color hurtColor = new Color(1, 0, 0, .35f);
     Color initialColor;
@@ -19,7 +16,6 @@ public class ElementStats : MonoBehaviour {
     public const int MaxArmor = 200;
 	public const int MaxHealth = 100;
 	public const int MinHealth = 0;
-    public const int MaxFuel = 100;
     Material modelMaterial;
 
 	protected int health = 100;
@@ -54,20 +50,11 @@ public class ElementStats : MonoBehaviour {
                 modelMaterial.color = initialColor;
             }
         }
-        if (this.fuel <= 0)
-        {
-            isOutOfFuel = true;
-        }
-        else
-        {
-            UseFuel();
-        }
 
-        if (isOutOfFuel)
-        {
-            transform.gameObject.rigidbody.useGravity = true;
-        }
+    }
 
+    public virtual void LoadFuel(int ammount)
+    {   
     }
 
     public virtual void Heal(int amount)
@@ -179,30 +166,7 @@ public class ElementStats : MonoBehaviour {
 		gameObject.SetActive(false);
 	}
 
-    public void AdjustFuel(int ammount)
+    public virtual void ReloadBullets(int count)
     {
-     
-        this.fuel += ammount;
-
-        if (this.fuel < 0) {
-            this.fuel = 0;
-        }
-        if (this.fuel > MaxFuel) {
-            this.fuel = MaxFuel;
-
-        }
-        OnFuelChanged();
-    }
-
-    public void UseFuel() 
-    {
-      
-        if (Time.time > fuelUsageTime)
-        {
-            this.AdjustFuel(-3);
-            fuelUsageTime += 1;
-            OnFuelChanged();
-        }
-       
     }
 }

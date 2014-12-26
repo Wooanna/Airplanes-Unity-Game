@@ -83,7 +83,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   heal: 0
-  armor: 2
+  armor: 0
+  fuel: 10
   playerOnly: 1
   random: 0
 --- !u!1001 &100100000

@@ -7,6 +7,7 @@ public class Bonus : MonoBehaviour
     public int heal;
     public int armor;
     public int fuel;
+    public int bullets;
     public bool playerOnly;
     public bool random;
 
@@ -28,6 +29,7 @@ public class Bonus : MonoBehaviour
         }
 
         ElementStats stats = other.GetComponent<ElementStats>();
+       
         if (stats != null)
         {
             if (this.random)
@@ -61,7 +63,11 @@ public class Bonus : MonoBehaviour
             }
             if (this.fuel > 0) 
             {
-                stats.AdjustFuel(this.fuel);
+                stats.LoadFuel(this.fuel);
+            }
+            if (this.bullets > 0)
+            {
+                stats.ReloadBullets(this.bullets);
             }
         }
 

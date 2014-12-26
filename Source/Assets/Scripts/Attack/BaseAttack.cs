@@ -7,15 +7,18 @@ public class BaseAttack : MonoBehaviour {
     public Transform[] guns;
     public GameObject bullet;
     public AudioClip shotSound;
-
+   
     private ElementStats stats;
 
-    public float reloadTime = .5f;
+    public float reloadTime = 1.5f;
     protected float nextFireTime;
+    public int bulletsLoaded;
 
     void Awake()
     {
         this.stats = GetComponent<ElementStats>();
+        this.bulletsLoaded = 50;
+        
     }
 
     protected void Reload()
@@ -29,7 +32,7 @@ public class BaseAttack : MonoBehaviour {
         {
             Instantiate(bullet, gun.position, gun.rotation);
         }
-
+        
         this.audio.PlayOneShot(this.shotSound);
     }
 
