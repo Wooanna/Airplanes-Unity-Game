@@ -7,7 +7,6 @@ public class Bonus : MonoBehaviour
     public int heal;
     public int armor;
     public int fuel;
-    public bool playerOnly;
     public bool random;
 
     void OnTriggerEnter(Collider collision)
@@ -22,12 +21,12 @@ public class Bonus : MonoBehaviour
 
     void HandleCollision(GameObject other)
     {
-        if (playerOnly && other.tag != "Player")
+        if (other.tag != "Player")
         {
             return;
         }
 
-        ElementStats stats = other.GetComponent<ElementStats>();
+        AirplaneStats stats = other.GetComponent<AirplaneStats>();
         if (stats != null)
         {
             if (this.random)
@@ -64,12 +63,6 @@ public class Bonus : MonoBehaviour
                 stats.AdjustFuel(this.fuel);
             }
         }
-
-
-
-
-
-
 
         gameObject.SetActive(false);
     }
