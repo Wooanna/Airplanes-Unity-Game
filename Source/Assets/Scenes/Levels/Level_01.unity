@@ -1679,7 +1679,6 @@ MonoBehaviour:
   - {fileID: 100000, guid: 9b8a765486c98b44ca22a3b496caa3d3, type: 2}
   - {fileID: 100000, guid: c08dcc3e17f4cba419725da8736d9069, type: 2}
   - {fileID: 100000, guid: e02009d96f72ec94dbb76bd09233817b, type: 2}
-  - {fileID: 182380, guid: aca81fcc1441cce488b401f1488cdf05, type: 2}
   minEnemySpawnCoolDown: 2
   maxEnemySpawnCoolDown: 5
   minObstacleSpawnCoolDown: 5
@@ -5639,10 +5638,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11462648, guid: 54af1431ee838405680f8917776ec23e, type: 2}
-      propertyPath: bonuses.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 462660, guid: 54af1431ee838405680f8917776ec23e, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5703,10 +5698,6 @@ Prefab:
       propertyPath: fuelText
       value: 
       objectReference: {fileID: 1060288781}
-    - target: {fileID: 11462648, guid: 54af1431ee838405680f8917776ec23e, type: 2}
-      propertyPath: bonuses.Array.data[3]
-      value: 
-      objectReference: {fileID: 182380, guid: aca81fcc1441cce488b401f1488cdf05, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
