@@ -51,20 +51,19 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
         {
             if (accelerationVelocity > 0)
             {
-                speedModifier = (accelerationVelocity * maxAccelerationSpeed) * Time.deltaTime;
+				speedModifier = (accelerationVelocity * maxAccelerationSpeed);
             }
             else if (accelerationVelocity < 0)
             {
-                speedModifier = (accelerationVelocity * minAccelerationSpeed) * Time.deltaTime;
+				speedModifier = (accelerationVelocity * minAccelerationSpeed);
             }
             else
             {
                 speedModifier = 0;
             }
 
-            direction = new Vector3(airplane.right.x * velocityX, airplane.up.y * velocityY, airplane.forward.z + speedModifier);
+			airplaneRigidbody.velocity = new Vector3((airplane.right.x * velocityX) * speed, (airplane.up.y * velocityY) * speed, (airplane.forward.z) * (speed + speedModifier));
 
-            airplaneRigidbody.velocity = (direction * speed);
 			airplane.rotation = initialRotation;
 			airplane.Rotate(airplane.forward, -(steerAngle * velocityX), Space.World);
 			airplane.Rotate(airplane.right, -(steerAngle * velocityY) + (accelerationAngle * accelerationVelocity), Space.World);
