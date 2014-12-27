@@ -33,3 +33,5 @@ sysinfo.txt
 /Source/*.suo
 /Source/*.sln
 /Source/*.csproj
+*.userprefs
+*.unityproj
