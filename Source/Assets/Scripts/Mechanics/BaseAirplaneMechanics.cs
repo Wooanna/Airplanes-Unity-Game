@@ -6,11 +6,11 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
     protected Transform airplane;
     Rigidbody airplaneRigidbody;
-    protected float velocityX;
-    protected float velocityY;
-    protected float accelerationVelocity;
-    protected float steerAngle = 10;
-    protected float accelerationAngle = 3;
+    float velocityX;
+    float velocityY;
+    float accelerationVelocity;
+    float steerAngle = 10;
+    float accelerationAngle = 3;
     Quaternion initialRotation;
 
     /// <summary>
@@ -62,16 +62,14 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
                 speedModifier = 0;
             }
 
-            airplane.rotation = initialRotation;
             direction = new Vector3(airplane.right.x * velocityX, airplane.up.y * velocityY, airplane.forward.z + speedModifier);
 
             airplaneRigidbody.velocity = (direction * speed);
-            ApplyRotation();
-        }
-    }
 
-    // TODO: Try to centralize the rotation in this class.
-    protected virtual void ApplyRotation(){
+            airplane.rotation = initialRotation;
+            airplane.Rotate(-airplane.forward, steerAngle * velocityX, Space.World);
+            airplane.Rotate(-airplane.right, (steerAngle * velocityY) + (-accelerationAngle * accelerationVelocity), Space.World);
+        }
     }
 
     protected void SpeedUp()
