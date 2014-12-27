@@ -50,10 +50,4 @@ public abstract class BasePlayerMechanics : BaseAirplaneMechanics
     protected abstract float GetHorizontalAxis();
     protected abstract float GetVerticalAxis();
     protected abstract float GetAccelerationAxis();
-
-    protected override void ApplyRotation()
-    {
-        airplane.Rotate(-airplane.forward, steerAngle * velocityX);
-        airplane.Rotate(-airplane.right, (steerAngle * velocityY) + (-accelerationAngle * accelerationVelocity));
-    }
 }

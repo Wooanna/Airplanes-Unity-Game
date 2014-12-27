@@ -115,10 +115,4 @@ public class EnemyPlane : BaseAirplaneMechanics
     {
         chance = Random.Range(0, 101);
     }
-
-    protected override void ApplyRotation()
-    {
-        airplane.Rotate(airplane.forward, steerAngle * velocityX);
-        airplane.Rotate(airplane.right, (steerAngle * velocityY) + (-accelerationAngle * accelerationVelocity));
-    }
 }
