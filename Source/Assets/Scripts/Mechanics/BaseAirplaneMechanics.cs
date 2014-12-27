@@ -62,16 +62,13 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
                 speedModifier = 0;
             }
 
-            airplane.rotation = initialRotation;
             direction = new Vector3(airplane.right.x * velocityX, airplane.up.y * velocityY, airplane.forward.z + speedModifier);
 
             airplaneRigidbody.velocity = (direction * speed);
-            ApplyRotation();
+			airplane.rotation = initialRotation;
+			airplane.Rotate(airplane.forward, -(steerAngle * velocityX), Space.World);
+			airplane.Rotate(airplane.right, -(steerAngle * velocityY) + (accelerationAngle * accelerationVelocity), Space.World);
         }
-    }
-
-    // TODO: Try to centralize the rotation in this class.
-    protected virtual void ApplyRotation(){
     }
 
     protected void SpeedUp()
