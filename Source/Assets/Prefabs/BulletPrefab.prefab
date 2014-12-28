@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
   m_Layer: 0
-  m_Name: EnemyBullet
+  m_Name: BulletPrefab
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,19 +76,19 @@ TrailRenderer:
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 4292935679
+      rgba: 4294967295
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4278245631
+      rgba: 4282569406
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4279202527
+      rgba: 4281698518
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4278213375
+      rgba: 4280179088
     m_Color[4]:
       serializedVersion: 2
-      rgba: 255
+      rgba: 460788
   m_MinVertexDistance: .340000004
   m_Autodestruct: 0
 --- !u!114 &11400000
@@ -102,8 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2286aa6d737e9e541aaf8a8e29472af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  affectsScore: 0
+  lifeSpanTime: 2
+  damage: 20
+  affectsScore: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

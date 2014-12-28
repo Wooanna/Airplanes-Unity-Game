@@ -18,13 +18,22 @@ public class Bullet : MonoBehaviour
 
     private const int Speed = 150;
     private Transform bullet;
+
+    public float lifeSpanTime = 2;
     public int damage = 15;
     public bool affectsScore;
+
+    WaitForSeconds lifeSpan;
 
     void Awake()
     {
         this.bullet = gameObject.transform;
-        Destroy(gameObject, 2);
+        lifeSpan = new WaitForSeconds(lifeSpanTime);
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(AutoDestruct());
     }
 
     void FixedUpdate()
@@ -58,6 +67,19 @@ public class Bullet : MonoBehaviour
             }
         }
         
-        Destroy(gameObject);
+        SelfDestruct();
+    }
+
+    void SelfDestruct()
+    {
+        GameObjectsManager.RetireObject("bullet", gameObject);
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator AutoDestruct()
+    {
+        yield return lifeSpan;
+
+        SelfDestruct();
     }
 }

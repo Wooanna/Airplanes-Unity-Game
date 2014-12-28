@@ -1772,7 +1772,12 @@ Prefab:
       propertyPath: bonuses.Array.data[4]
       value: 
       objectReference: {fileID: 159708, guid: 64fabab293bb10f41b60e0961c165387, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 11462648, guid: 54af1431ee838405680f8917776ec23e, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11462652, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 54af1431ee838405680f8917776ec23e, type: 2}
   m_RootGameObject: {fileID: 1362752992}
   m_IsPrefabParent: 0
@@ -2305,7 +2310,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11483022, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_RootGameObject: {fileID: 1450184464}
   m_IsPrefabParent: 0
@@ -3568,13 +3574,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 1362752993}
   - 54: {fileID: 1362753001}
-  - 114: {fileID: 1362752999}
   - 65: {fileID: 1362752996}
   - 65: {fileID: 1362752995}
   - 82: {fileID: 1362752994}
   - 114: {fileID: 1362753004}
   - 114: {fileID: 1362752997}
   - 114: {fileID: 1362752998}
+  - 114: {fileID: 1362753000}
+  - 114: {fileID: 1362752999}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -3722,19 +3729,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1393cab4460544af0993a011f74d9b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  responsivenessUnmanaged: 2
-  responsivenessManaged: 2
-  speed: 10
 --- !u!114 &1362752999
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11462652, guid: 54af1431ee838405680f8917776ec23e,
-    type: 2}
-  m_PrefabInternal: {fileID: 641537478}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1362752992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2a87ca55b3eae419eadebbe58ed977, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ab82fba20b85184db2396a52c0160e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   guns:
@@ -3742,8 +3745,24 @@ MonoBehaviour:
   - {fileID: 478946787}
   bullet: {fileID: 100000, guid: 73a60e0a3edccb340926840e76564ee3, type: 2}
   shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
-  reloadTime: .100000001
-  bulletsLoaded: 0
+  bulletsLoaded: 100
+  reloadTime: .200000003
+  damage: 20
+  affectsScore: 0
+--- !u!114 &1362753000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1362752992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941a19422018b074ba6229a4a493935f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responsivenessUnmanaged: 2
+  responsivenessManaged: 2
+  speed: 10
 --- !u!54 &1362753001
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4044,7 +4063,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1450184465}
-  - 114: {fileID: 1450184466}
   m_Layer: 0
   m_Name: IceArcPrefab
   m_TagString: Untagged
@@ -4070,25 +4088,6 @@ Transform:
   - {fileID: 1828611984}
   m_Father: {fileID: 564224874}
   m_RootOrder: 1
---- !u!114 &1450184466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11483022, guid: 652532d722b5e45ba83b95254e6be134,
-    type: 2}
-  m_PrefabInternal: {fileID: 831463908}
-  m_GameObject: {fileID: 1450184464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  fuel: 0
-  bullets: 0
-  playerOnly: 0
-  random: 0
 --- !u!1 &1451412164
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,7 +4670,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11483022, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 652532d722b5e45ba83b95254e6be134, type: 2}
   m_RootGameObject: {fileID: 1869671320}
   m_IsPrefabParent: 0
@@ -5214,7 +5214,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1869671321}
-  - 114: {fileID: 1869671322}
   m_Layer: 0
   m_Name: IceArcPrefab
   m_TagString: Untagged
@@ -5240,25 +5239,6 @@ Transform:
   - {fileID: 1144909337}
   m_Father: {fileID: 564224874}
   m_RootOrder: 8
---- !u!114 &1869671322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11483022, guid: 652532d722b5e45ba83b95254e6be134,
-    type: 2}
-  m_PrefabInternal: {fileID: 1631487437}
-  m_GameObject: {fileID: 1869671320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d8324c9533ed24dab42bd67872d4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
-  heal: 0
-  armor: 0
-  fuel: 0
-  bullets: 0
-  playerOnly: 0
-  random: 0
 --- !u!1 &1886393414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5613,6 +5593,45 @@ Transform:
   - {fileID: 1527147316}
   m_Father: {fileID: 564224874}
   m_RootOrder: 2
+--- !u!1 &2089806176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2089806178}
+  - 114: {fileID: 2089806177}
+  m_Layer: 0
+  m_Name: GameObjectsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!114 &2089806177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089806176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058fffa02526e4229a4cd58b8142e882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2089806178
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089806176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &2099515309
 GameObject:
   m_ObjectHideFlags: 0

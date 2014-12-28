@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAttack : BaseAttack
+[RequireComponent(typeof(AirplaneAttack))]
+public class EnemyAttack : MonoBehaviour
 {
+    IAttacker attacker;
+
     void Start()
     {
-        Reload();
+        attacker = (IAttacker)gameObject.GetComponent<AirplaneAttack>();
+
+        StartCoroutine(Fire());
     }
 
-    void Update()
+    IEnumerator Fire()
     {
-        if (CanShoot())
+        while (true)
         {
-            Fire();
-            Reload();
+            attacker.Fire();
+
+            yield return null;
         }
     }
 }

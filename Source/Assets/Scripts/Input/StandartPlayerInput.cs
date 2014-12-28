@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StandartPlayerInput : BasePlayerMechanics {
+public class StandartPlayerInput : BasePlayerInput {
 
 	protected override float GetHorizontalAxis()
     {
@@ -16,5 +16,10 @@ public class StandartPlayerInput : BasePlayerMechanics {
     protected override float GetAccelerationAxis()
     {
         return Input.GetAxisRaw("Acceleration");
+    }
+
+    protected override bool GetFire()
+    {
+        return Input.GetButton("Fire1");
     }
 }

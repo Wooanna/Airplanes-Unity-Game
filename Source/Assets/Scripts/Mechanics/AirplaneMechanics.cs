@@ -2,15 +2,15 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class BaseAirplaneMechanics : MonoBehaviour {
+public class AirplaneMechanics : MonoBehaviour, IAirplaneController {
 
-    protected Transform airplane;
+    Transform airplane;
     Rigidbody airplaneRigidbody;
-    protected float velocityX;
-    protected float velocityY;
-    protected float accelerationVelocity;
-    protected float steerAngle = 10;
-    protected float accelerationAngle = 3;
+    float velocityX;
+    float velocityY;
+    float accelerationVelocity;
+    float steerAngle = 10;
+    float accelerationAngle = 3;
     Quaternion initialRotation;
 
     /// <summary>
@@ -31,8 +31,6 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
 
     int maxAccelerationSpeed = 10; // TODO: To be updated along with any speed changes.
     int minAccelerationSpeed = 5; // TODO: To be updated along with any speed changes.
-
-    Vector3 direction;
 
     void Awake()
     {
@@ -70,17 +68,17 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
         }
     }
 
-    protected void SpeedUp()
+    public void SpeedUp()
     {
         accelerationVelocity = Mathf.Min(accelerationVelocity + (responsivenessManaged * Time.deltaTime), 1F);
     }
 
-    protected void SlowDown()
+    public void SlowDown()
     {
         accelerationVelocity = Mathf.Max(accelerationVelocity - (responsivenessManaged * Time.deltaTime), -1F);
     }
 
-    protected void KeepConstantSpeed()
+	public void KeepConstantSpeed()
     {
         if (accelerationVelocity > 0)
         {
@@ -92,17 +90,17 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
         }
     }
 
-    protected void GoUp()
+	public void GoUp()
     {
         velocityY = Mathf.Min(velocityY + (responsivenessManaged * Time.deltaTime), 1F);
     }
 
-    protected void GoDown()
+    public void GoDown()
     {
         velocityY = Mathf.Max(velocityY - (responsivenessManaged * Time.deltaTime), -1F);
     }
 
-    protected void KeepCenterVertical()
+	public void KeepCenterVertical()
     {
         if (velocityY > 0)
         {
@@ -114,17 +112,17 @@ public abstract class BaseAirplaneMechanics : MonoBehaviour {
         }
     }
 
-    protected void GoRight()
+    public void GoRight()
     {
         velocityX = Mathf.Min(velocityX + (responsivenessManaged * Time.deltaTime), 1F);
     }
 
-    protected void GoLeft()
+    public void GoLeft()
     {
         velocityX = Mathf.Max(velocityX - (responsivenessManaged * Time.deltaTime), -1F);
     }
 
-    protected void KeepCenterHorizontal()
+    public void KeepCenterHorizontal()
     {
         if (velocityX > 0)
         {

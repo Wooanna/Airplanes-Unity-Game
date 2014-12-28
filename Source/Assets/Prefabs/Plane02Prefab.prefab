@@ -33,6 +33,8 @@ GameObject:
   - 54: {fileID: 5485730}
   - 114: {fileID: 11485728}
   - 114: {fileID: 11485730}
+  - 114: {fileID: 11448308}
+  - 114: {fileID: 11454256}
   m_Layer: 0
   m_Name: Plane02Prefab
   m_TagString: Untagged
@@ -509,6 +511,40 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &11448308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941a19422018b074ba6229a4a493935f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responsivenessUnmanaged: 2
+  responsivenessManaged: 2
+  speed: 6
+--- !u!114 &11454256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab82fba20b85184db2396a52c0160e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guns:
+  - {fileID: 485722}
+  - {fileID: 485724}
+  bullet: {fileID: 100000, guid: 73a60e0a3edccb340926840e76564ee3, type: 2}
+  shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
+  bulletsLoaded: 100
+  reloadTime: .5
+  damage: 3
+  affectsScore: 0
 --- !u!114 &11485724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,13 +567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07c084561342cb4a9048785862ad860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guns:
-  - {fileID: 485722}
-  - {fileID: 485724}
-  bullet: {fileID: 100000, guid: 7907a409fa0d69b49947b483ab975a0f, type: 2}
-  shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
-  reloadTime: .5
-  bulletsLoaded: 1000
 --- !u!114 &11485728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,9 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3a35b018dac9c44ac998f17f8f9a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  responsivenessUnmanaged: 2
-  responsivenessManaged: 2
-  speed: 7
 --- !u!114 &11485730
 MonoBehaviour:
   m_ObjectHideFlags: 1

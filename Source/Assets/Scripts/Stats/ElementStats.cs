@@ -16,7 +16,6 @@ public class ElementStats : MonoBehaviour {
     public const int MaxArmor = 200;
 	public const int MaxHealth = 100;
 	public const int MinHealth = 0;
-    public const int MaxFuel = 100;
     Material modelMaterial;
 
 	protected int health = 100;

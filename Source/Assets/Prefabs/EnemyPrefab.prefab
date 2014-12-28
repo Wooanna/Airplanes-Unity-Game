@@ -16,6 +16,8 @@ GameObject:
   - 114: {fileID: 11443716}
   - 114: {fileID: 11489506}
   - 114: {fileID: 11489648}
+  - 114: {fileID: 11477146}
+  - 114: {fileID: 11413548}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -520,13 +522,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07c084561342cb4a9048785862ad860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11413548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab82fba20b85184db2396a52c0160e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   guns:
   - {fileID: 400004}
   - {fileID: 400006}
-  bullet: {fileID: 100000, guid: 7907a409fa0d69b49947b483ab975a0f, type: 2}
+  bullet: {fileID: 100000, guid: 73a60e0a3edccb340926840e76564ee3, type: 2}
   shotSound: {fileID: 8300000, guid: 7698292ece7d98f4eac43e5df41d0db7, type: 3}
+  bulletsLoaded: 100
   reloadTime: .5
-  bulletsLoaded: 0
+  damage: 3
+  affectsScore: 0
 --- !u!114 &11443716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -545,6 +560,20 @@ MonoBehaviour:
   armor: 5
   SmokeHealthBorder: 80
   FireHealthBorder: 40
+--- !u!114 &11477146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941a19422018b074ba6229a4a493935f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responsivenessUnmanaged: 2
+  responsivenessManaged: 2
+  speed: 5
 --- !u!114 &11489506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -567,9 +596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3a35b018dac9c44ac998f17f8f9a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputGravity: 2
-  inputSensitivity: 2
-  speed: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

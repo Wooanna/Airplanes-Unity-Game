@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyPlane : BaseAirplaneMechanics
+[RequireComponent(typeof(AirplaneMechanics))]
+public class EnemyPlane : MonoBehaviour
 {
     private const int DirectionUp = 1;
     private const int DirectionDown = 1 << 1;
@@ -11,8 +12,11 @@ public class EnemyPlane : BaseAirplaneMechanics
     private const int SlowDownMovement = 1 << 5;
     private int movement;
 
-    protected override void Init()
+	private IAirplaneController airplaneController;
+
+    void Start()
     {
+		this.airplaneController = (IAirplaneController)gameObject.GetComponent<AirplaneMechanics>();
         StartCoroutine(Navigate());
     }
 
@@ -22,42 +26,42 @@ public class EnemyPlane : BaseAirplaneMechanics
         {
             if ((movement & DirectionUp) > 0)
             {
-                GoUp();
+                this.airplaneController.GoUp();
             } else if ((movement & DirectionDown) > 0)
             {
-                GoDown();
-            } else
+				this.airplaneController.GoDown();
+			} else
             {
-                KeepCenterVertical();
+				this.airplaneController.KeepCenterVertical();
             }
 
             if ((movement & DirectionLeft) > 0)
             {
-                GoLeft();
-            } else if ((movement & DirectionRight) > 0)
+				this.airplaneController.GoLeft();
+			} else if ((movement & DirectionRight) > 0)
             {
-                GoRight();
-            } else
+				this.airplaneController.GoRight();
+			} else
             {
-                KeepCenterHorizontal();
+				this.airplaneController.KeepCenterHorizontal();
             }
 
             if ((movement & SpeedUpMovement) > 0)
             {
-                SpeedUp();
-            } else if ((movement & SlowDownMovement) > 0)
+				this.airplaneController.SpeedUp();
+			} else if ((movement & SlowDownMovement) > 0)
             {
-                SlowDown();
-            } else
+				this.airplaneController.SlowDown();
+			} else
             {
-                KeepConstantSpeed();
+				this.airplaneController.KeepConstantSpeed();
             }
 
         } else
         {
-            KeepCenterHorizontal();
-            KeepCenterVertical();
-            KeepConstantSpeed();
+			this.airplaneController.KeepCenterHorizontal();
+			this.airplaneController.KeepCenterVertical();
+			this.airplaneController.KeepConstantSpeed();
         }
     }
 

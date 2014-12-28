@@ -12,6 +12,7 @@ public class AirplaneStats : BaseAirplaneStats {
     public int fuel = 100;
     public const int MaxFuel = 100;
     private AirplaneAttack attack;
+    WaitForSeconds fuelUpdateTime;
 
     protected override void Init()
     {
@@ -19,6 +20,7 @@ public class AirplaneStats : BaseAirplaneStats {
         this.attack = GetComponent<AirplaneAttack>();
         this.armourText.text = armor.ToString();
         this.fuelText.text = fuel.ToString();
+        this.fuelUpdateTime = new WaitForSeconds(3);
         StartCoroutine(UseFuel());
     }
 
@@ -63,8 +65,8 @@ public class AirplaneStats : BaseAirplaneStats {
         if (this.fuel > MaxFuel)
         {
             this.fuel = MaxFuel;
-
         }
+
         OnFuelChanged();
     }
 
@@ -72,17 +74,16 @@ public class AirplaneStats : BaseAirplaneStats {
     {
         while (this.fuel > 0)
         {
-            yield return new WaitForSeconds(3);
-            this.fuel -= 3;
-            OnFuelChanged();
-        }
-        if (this.fuel <= 0)
-        {
-            this.fuel = 0;
-            transform.gameObject.rigidbody.useGravity = true;
+            yield return fuelUpdateTime;
+            LoadFuel(-3);
         }
 
+        if (this.fuel == 0)
+        {
+            transform.gameObject.rigidbody.useGravity = true;
+        }
     }
+
     public override void ReloadBullets(int count)
     {
         this.attack.bulletsLoaded += count;
@@ -91,11 +92,6 @@ public class AirplaneStats : BaseAirplaneStats {
     protected override void AdjustHealth(int ammount)
     {
         base.AdjustHealth(ammount);
-
-        if (ammount < 0)
-        {
-            // flash red
-        }
 
         this.healthSlider.value = health / (float)MaxHealth;
     }
